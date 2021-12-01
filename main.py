@@ -41,6 +41,7 @@ async def on_ready():
     await asyncio.sleep(600)
     with open('jtime.json', 'r') as f:
         data = json.load(f)
+    print(data['messages'])
     new_now = datetime.now(tz)
     timey = new_now.strftime("%H")
     if timey == '00':
