@@ -533,4 +533,4 @@ async def dm(ctx, guild_id: int):
 @commands.is_owner()
 async def shutdown(context):
     exit()
-client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True
+client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
