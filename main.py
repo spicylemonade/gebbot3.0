@@ -4,7 +4,7 @@ from discord.ext import commands
 import random
 from discord import Permissions
 from discord.ext.commands import Bot
-from colorama import Fore, Style
+#from colorama import Fore, Style
 import asyncio
 import os
 from pytz import timezone
@@ -13,11 +13,10 @@ from datetime import datetime
 from datetime import date
 from bs4 import BeautifulSoup
 import requests
+svar=0
 #from matplotlib import pyplot as plt
 import plotly.graph_objects as go
 username = 'spicy_lemon'
-api_key = 'FBh3cdbBkqXB6Lvwwotv'
-chart_studio.tools.set_credentials_file(username=username,api_key=api_key)
 import json
 import chart_studio.plotly as py
 import chart_studio.tools as tls
@@ -31,20 +30,26 @@ xmes = 0
 urlinp = 'https://chart-studio.plotly.com/~spicy_lemon/1/.png'
 tz = timezone('EST')
 client = commands.Bot(command_prefix='g!', intents=intents, help_command=None)
+import gspread
+from pprint import pprint
+from oauth2client.service_account import ServiceAccountCredentials
+scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+
+sheet_client = gspread.authorize(creds)
+sheet = sheet_client.open("test").sheet1
 
 
 @client.event
 async def on_ready():
+  global svar
   global xmes
   print("bot ready")
   while True:
     await asyncio.sleep(600)
-    with open('jtime.json', 'r') as f:
-        data = json.load(f)
-    print(data['messages'])
     new_now = datetime.now(tz)
     timey = new_now.strftime("%H")
-    if timey == '00':
+    """if timey == '00':
             datey = datetime.today().strftime('%d %m %Y')
             day, month, year = (int(i) for i in datey.split(' '))
             weday = date(int(year), int(month), int(day)+6)
@@ -64,7 +69,17 @@ async def on_ready():
             data['messages']=0
             with open('jtime.json', 'w') as f:
               json.dump(data, f)
-            await asyncio.sleep(3600)
+            await asyncio.sleep(3600)"""
+
+    if timey =="00":
+        datey = datetime.today().strftime('%d %m %Y')
+        day, month, year = (int(i) for i in datey.split(' '))
+        weday = date(int(year), int(month), int(day))
+        datey1 = weday.strftime("%A")
+        svar+=1
+        sheet.update_cell(svar, 1, datey1)
+        await asyncio.sleep(3600)
+
 ''''@client.event
 async def on_message(message):
  if message.content.startswith('sauce drip nayu'):
@@ -74,16 +89,12 @@ keyword = "bum do"
 @client.event
 async def on_message(message):
     global xmes
-    with open('jtime.json', 'r') as f:
-        data = json.load(f)
     if message.channel.type is discord.ChannelType.private:
       pass
 
     elif message.guild.id == 761311676049915985:
         xmes += 1
-        data['messages']+= 1
-        with open('jtime.json', 'w') as f:
-          json.dump(data, f)
+        sheet.update_cell(svar,2, (int(sheet.cell(svar, 2).value) + 1))
         print(xmes)
     username = message.author.name
     embed = discord.Embed(title=":game_die:",
@@ -116,13 +127,12 @@ async def blip(ctx):
             #if bumf == "14:56:00":
                # print('yes')
         print(bumf)'''
-likky = 'https://chart-studio.plotly.com/~spicy_lemon/1.png'
-linkai = likky.replace('.png', '.jpg')
-embeysir = discord.Embed(title='Shibo-Stats', description='click on the image and open original to see up to date stats')
+likky = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3NGPoU0F3IeT5HvQapFeEQpeDiQa-2FpQTY7gzbtIpFnMo7V3eYJMvh5oPqFuQH0sYWcR_Rv5CZBy/pubhtml?gid=0&single=true'
+embeysir = discord.Embed(title='Shibo-Stats', description='on going')
 @client.command()
 async def stats(ctx):
-    embeysir.set_image(url=linkai)
-    embeysir.set_thumbnail(url=linkai)
+    embeysir.set_image(url=likky)
+    embeysir.set_thumbnail(url=likky)
     await ctx.send(embed=embeysir)
 
 
@@ -523,4 +533,4 @@ async def dm(ctx, guild_id: int):
 @commands.is_owner()
 async def shutdown(context):
     exit()
-client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
+client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True
