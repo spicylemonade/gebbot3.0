@@ -54,7 +54,7 @@ async def on_ready():
         loop_var = int(sheet.cell(12, 1).value)
         loop2_var = int(sheet.cell(13, 1).value)
         svar = int(sheet.cell(9, 1).value)
-        await asyncio.sleep(260)
+        await asyncio.sleep(160)
         new_now = datetime.now(tz)
         timey = new_now.strftime("%H")
         """if timey == '00':
