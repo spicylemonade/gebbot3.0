@@ -13,7 +13,6 @@ from datetime import datetime
 from datetime import date
 from bs4 import BeautifulSoup
 import requests
-svar=0
 #from matplotlib import pyplot as plt
 import plotly.graph_objects as go
 username = 'spicy_lemon'
@@ -42,10 +41,14 @@ sheet = sheet_client.open("test").sheet1
 
 @client.event
 async def on_ready():
-  global svar
   global xmes
   print("bot ready")
   while True:
+    global svar
+    global loop_var
+    loop_var = sheet.cell(1,12).value
+    loop2_var = sheet.cell(1,13).value
+    svar = sheet.cell(1,9).value
     await asyncio.sleep(600)
     new_now = datetime.now(tz)
     timey = new_now.strftime("%H")
@@ -76,8 +79,17 @@ async def on_ready():
         day, month, year = (int(i) for i in datey.split(' '))
         weday = date(int(year), int(month), int(day))
         datey1 = weday.strftime("%A")
-        svar+=1
-        sheet.update_cell(svar, 1, datey1)
+        if svar >=7:
+          sheet.sheet.update_cell(1, 12, loop_var+1)
+          sheet.sheet.update_cell(1, 13, loop2_var+1)
+          sheet.sheet.update_cell(1, 9, 0)
+          svar = sheet.cell(1,9).value
+          
+          
+          
+        sheet.sheet.update_cell(1, 9, svar+1)
+        svar=sheet.cell(1,9).value
+        sheet.update_cell(svar, loop2_var, datey1)
         await asyncio.sleep(3600)
 
 ''''@client.event
@@ -94,7 +106,7 @@ async def on_message(message):
 
     elif message.guild.id == 761311676049915985:
         xmes += 1
-        sheet.update_cell(svar,2, (int(sheet.cell(svar, 2).value) + 1))
+        sheet.update_cell(svar,loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
         print(xmes)
     username = message.author.name
     embed = discord.Embed(title=":game_die:",
