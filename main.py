@@ -147,7 +147,7 @@ async def blip(ctx):
             #if bumf == "14:56:00":
                # print('yes')
         print(bumf)'''
-likky = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3NGPoU0F3IeT5HvQapFeEQpeDiQa-2FpQTY7gzbtIpFnMo7V3eYJMvh5oPqFuQH0sYWcR_Rv5CZBy/pubchart?oid=388733778&format=image'
+likky = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3NGPoU0F3IeT5HvQapFeEQpeDiQa-2FpQTY7gzbtIpFnMo7V3eYJMvh5oPqFuQH0sYWcR_Rv5CZBy/pubchart?oid=1043142030&format=image'
 embeysir = discord.Embed(title='Shibo-Stats', description='click open original to get up to date')
 
 
