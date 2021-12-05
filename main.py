@@ -26,6 +26,9 @@ intents = discord.Intents.default()
 intents.members = True
 intents.typing = True
 xmes = 0
+loop_var = sheet.cell(1,12).value
+loop2_var = sheet.cell(1,13).value
+svar = sheet.cell(1,9).value
 urlinp = 'https://chart-studio.plotly.com/~spicy_lemon/1/.png'
 tz = timezone('EST')
 client = commands.Bot(command_prefix='g!', intents=intents, help_command=None)
@@ -46,9 +49,7 @@ async def on_ready():
   while True:
     global svar
     global loop_var
-    loop_var = sheet.cell(1,12).value
-    loop2_var = sheet.cell(1,13).value
-    svar = int(sheet.cell(1,9).value)
+    global loop2_var
     await asyncio.sleep(60)
     new_now = datetime.now(tz)
     timey = new_now.strftime("%H")
@@ -83,12 +84,12 @@ async def on_ready():
           sheet.sheet.update_cell(1, 12, loop_var+1)
           #sheet.sheet.update_cell(1, 13, loop2_var+2)
           sheet.sheet.update_cell(1, 9, 0)
-          svar = int(sheet.cell(1,9).value)
+          svar = sheet.cell(1,9).value
           
           
           
         sheet.sheet.update_cell(1, 9, svar+1)
-        svar=int(sheet.cell(1,9).value)
+        svar=sheet.cell(1,9).value
         sheet.update_cell(svar, loop2_var, datey1)
         await asyncio.sleep(3600)
 
@@ -101,6 +102,7 @@ keyword = "bum do"
 @client.event
 async def on_message(message):
     global xmes
+    global loop_var
     if message.channel.type is discord.ChannelType.private:
       pass
 
