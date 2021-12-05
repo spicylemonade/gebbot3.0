@@ -80,8 +80,8 @@ async def on_ready():
         weday = date(int(year), int(month), int(day))
         datey1 = weday.strftime("%A")
         if svar >=7:
-          sheet.sheet.update_cell(1, 12, loop_var+2)
-          sheet.sheet.update_cell(1, 13, loop2_var+2)
+          sheet.sheet.update_cell(1, 12, loop_var+1)
+          #sheet.sheet.update_cell(1, 13, loop2_var+2)
           sheet.sheet.update_cell(1, 9, 0)
           svar = sheet.cell(1,9).value
           
