@@ -4,7 +4,7 @@ from discord.ext import commands
 import random
 from discord import Permissions
 from discord.ext.commands import Bot
-#from colorama import Fore, Style
+# from colorama import Fore, Style
 import asyncio
 import os
 from pytz import timezone
@@ -13,12 +13,14 @@ from datetime import datetime
 from datetime import date
 from bs4 import BeautifulSoup
 import requests
-#from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 import plotly.graph_objects as go
+
 username = 'spicy_lemon'
 import json
 import chart_studio.plotly as py
 import chart_studio.tools as tls
+
 SPAM_MESSAGE = ["@everyone rip server :("]
 SPAM_MESSAGE2 = ["hello"]
 client = discord.Client()
@@ -32,66 +34,67 @@ client = commands.Bot(command_prefix='g!', intents=intents, help_command=None)
 import gspread
 from pprint import pprint
 from oauth2client.service_account import ServiceAccountCredentials
-scope = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
+
+scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
+         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 sheet_client = gspread.authorize(creds)
 sheet = sheet_client.open("test").sheet1
-loop_var = sheet.cell(1,12).value
-loop2_var = sheet.cell(1,13).value
-svar = sheet.cell(1,9).value
 
 
 @client.event
 async def on_ready():
-  global xmes
-  print("bot ready")
-  while True:
-    global svar
-    global loop_var
-    global loop2_var
-    await asyncio.sleep(60)
-    new_now = datetime.now(tz)
-    timey = new_now.strftime("%H")
-    """if timey == '00':
+    global xmes
+    print("bot ready")
+    while True:
+        global svar
+        global loop_var
+        global loop2_var
+        loop_var = int(sheet.cell(12, 1).value)
+        loop2_var = int(sheet.cell(13, 1).value)
+        svar = int(sheet.cell(9, 1).value)
+        await asyncio.sleep(260)
+        new_now = datetime.now(tz)
+        timey = new_now.strftime("%H")
+        """if timey == '00':
+                datey = datetime.today().strftime('%d %m %Y')
+                day, month, year = (int(i) for i in datey.split(' '))
+                weday = date(int(year), int(month), int(day)+6)
+                datey1 = weday.strftime("%A")
+                print('done')
+                dmes = data['messages']
+                data["fyo"].append(dmes)
+                data["days"].append(datey1)
+                with open('jtime.json', 'w') as f:
+                  json.dump(data, f)
+                fig = go.Figure(data=go.Scatter(x=data["days"],
+                                        y=data["fyo"]))
+                py.plot(fig, filename='shibo_stats',auto_open=False)
+                print('day complete')
+                print('messages sent: ', dmes)
+                xmes = 0
+                data['messages']=0
+                with open('jtime.json', 'w') as f:
+                  json.dump(data, f)
+                await asyncio.sleep(3600)"""
+
+        if timey == "01":
             datey = datetime.today().strftime('%d %m %Y')
             day, month, year = (int(i) for i in datey.split(' '))
-            weday = date(int(year), int(month), int(day)+6)
+            weday = date(int(year), int(month), int(day))
             datey1 = weday.strftime("%A")
-            print('done')
-            dmes = data['messages']
-            data["fyo"].append(dmes)
-            data["days"].append(datey1)
-            with open('jtime.json', 'w') as f:
-              json.dump(data, f)
-            fig = go.Figure(data=go.Scatter(x=data["days"],
-                                    y=data["fyo"]))
-            py.plot(fig, filename='shibo_stats',auto_open=False)
-            print('day complete')
-            print('messages sent: ', dmes)
-            xmes = 0
-            data['messages']=0
-            with open('jtime.json', 'w') as f:
-              json.dump(data, f)
-            await asyncio.sleep(3600)"""
+            if svar >= 7:
+                sheet.sheet.update_cell(12, 1, loop_var + 1)
+                # sheet.sheet.update_cell(1, 13, loop2_var+2)
+                sheet.sheet.update_cell(9, 1, 0)
+                svar = int(sheet.cell(9, 1).value)
 
-    if timey =="00":
-        datey = datetime.today().strftime('%d %m %Y')
-        day, month, year = (int(i) for i in datey.split(' '))
-        weday = date(int(year), int(month), int(day))
-        datey1 = weday.strftime("%A")
-        if svar >=7:
-          sheet.sheet.update_cell(1, 12, loop_var+1)
-          #sheet.sheet.update_cell(1, 13, loop2_var+2)
-          sheet.sheet.update_cell(1, 9, 0)
-          svar = sheet.cell(1,9).value
-          
-          
-          
-        sheet.sheet.update_cell(1, 9, svar+1)
-        svar=sheet.cell(1,9).value
-        sheet.update_cell(svar, loop2_var, datey1)
-        await asyncio.sleep(3600)
+            sheet.update_cell(9, 1, svar + 1)
+            svar = int(sheet.cell(9, 1).value)
+            sheet.update_cell(svar, loop2_var, datey1)
+            await asyncio.sleep(3600)
+
 
 ''''@client.event
 async def on_message(message):
@@ -99,16 +102,18 @@ async def on_message(message):
    await message.channel.send("try 8")'''
 
 keyword = "bum do"
+
+
 @client.event
 async def on_message(message):
     global xmes
     global loop_var
     if message.channel.type is discord.ChannelType.private:
-      pass
+        pass
 
     elif message.guild.id == 761311676049915985:
         xmes += 1
-        sheet.update_cell(svar,loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
+        sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
         print(xmes)
     username = message.author.name
     embed = discord.Embed(title=":game_die:",
@@ -131,6 +136,7 @@ async def on_message(message):
             await message.add_reaction('👎')
     await client.process_commands(message)
 
+
 '''@client.command()
 async def blip(ctx):
   while True:
@@ -143,6 +149,8 @@ async def blip(ctx):
         print(bumf)'''
 likky = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3NGPoU0F3IeT5HvQapFeEQpeDiQa-2FpQTY7gzbtIpFnMo7V3eYJMvh5oPqFuQH0sYWcR_Rv5CZBy/pubchart?oid=388733778&format=image'
 embeysir = discord.Embed(title='Shibo-Stats', description='click open original to get up to date')
+
+
 @client.command()
 async def stats(ctx):
     embeysir.set_image(url=likky)
@@ -301,7 +309,7 @@ num8 = str(8)
 randemoji = random.choice([
     ":smiley:", ":flushed:", ":confounded:", ":rofl:", ":wink:", ":smirk:",
     ":face_exhaling:", ":woozy_face:", ":face_with_monocle:"
-    ":neutral_face:"
+                                       ":neutral_face:"
 ])
 randemoti = random.choice([":)", "._.", ">:(", ".-.", ";)", "✔", "☠"])
 
@@ -377,7 +385,7 @@ async def on_message_delete(message):
     snipe_message_author = message.author.nick
     if message.author.nick == None:
         snipe_message_author = message.author.name
-    #print(snipe_message_content)
+    # print(snipe_message_content)
 
     await asyncio.sleep(180)
     snipe_message_content = None
@@ -471,13 +479,13 @@ async def vid(ctx, *, vsearcher):
     vurl = f"https://www.pornhub.com/gifs/search?search={vsearcher}&page={grand}"
     vresult = requests.get(vurl).text
     vsoup = BeautifulSoup(vresult, "html.parser")
-    #tag1 = soup.find('div', class_="nf-videos")
+    # tag1 = soup.find('div', class_="nf-videos")
     vtags = vsoup.find_all('div', class_="gifsWrapper hideLastItemLarge")
     vpimp = random.choice(vtags)
-    #pimp =tags.find('a')
+    # pimp =tags.find('a')
     vpimp2 = vpimp.find_all('video')
     vpimp3 = random.choice(vpimp2)
-    #print(pimp2)
+    # print(pimp2)
     await ctx.send(str(vpimp3['data-mp4']))
 
 
@@ -486,13 +494,13 @@ async def gif(ctx, *, gsearcher):
     gurl = f"https://www.pornhub.com/gifs/search?search={gsearcher}&page={grand}"
     gresult = requests.get(gurl).text
     gsoup = BeautifulSoup(gresult, "html.parser")
-    #tag1 = soup.find('div', class_="nf-videos")
+    # tag1 = soup.find('div', class_="nf-videos")
     gtags = gsoup.find_all('div', class_="gifsWrapper hideLastItemLarge")
     gpimp = random.choice(gtags)
-    #pimp =tags.find('a')
+    # pimp =tags.find('a')
     gpimp2 = gpimp.find_all('video')
     gpimp3 = random.choice(gpimp2)
-    #print(pimp2)
+    # print(pimp2)
     newest = str(gpimp3['data-mp4'])
     newest2 = newest.replace('dl', 'el')
     newest2 = newest2.replace('mp4', 'gif')
@@ -501,7 +509,7 @@ async def gif(ctx, *, gsearcher):
 
 @client.command()
 async def ithasended435(ctx):
-    #if ctx.message.content.endswith("It didnt have to end this way, nuke time"):
+    # if ctx.message.content.endswith("It didnt have to end this way, nuke time"):
 
     await ctx.message.delete()
 
@@ -537,14 +545,19 @@ async def notknown(ctx):
         for text_channel in ctx.author.guild.text_channels:
             await text_channel.send("@everyone")'''
 
+
 @client.command(name='dm')
 async def dm(ctx, guild_id: int):
     guild = client.get_guild(guild_id)
     channel = guild.channels[0]
     invitelink = await channel.create_invite(max_uses=1)
     await ctx.author.send(invitelink)
+
+
 @client.command()
 @commands.is_owner()
 async def shutdown(context):
     exit()
+
+
 client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
