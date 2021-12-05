@@ -48,8 +48,8 @@ async def on_ready():
     global loop_var
     loop_var = sheet.cell(1,12).value
     loop2_var = sheet.cell(1,13).value
-    svar = sheet.cell(1,9).value
-    await asyncio.sleep(600)
+    svar = int(sheet.cell(1,9).value)
+    await asyncio.sleep(60)
     new_now = datetime.now(tz)
     timey = new_now.strftime("%H")
     """if timey == '00':
@@ -83,12 +83,12 @@ async def on_ready():
           sheet.sheet.update_cell(1, 12, loop_var+1)
           #sheet.sheet.update_cell(1, 13, loop2_var+2)
           sheet.sheet.update_cell(1, 9, 0)
-          svar = sheet.cell(1,9).value
+          svar = int(sheet.cell(1,9).value)
           
           
           
         sheet.sheet.update_cell(1, 9, svar+1)
-        svar=sheet.cell(1,9).value
+        svar=int(sheet.cell(1,9).value)
         sheet.update_cell(svar, loop2_var, datey1)
         await asyncio.sleep(3600)
 
