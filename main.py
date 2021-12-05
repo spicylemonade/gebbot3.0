@@ -26,9 +26,6 @@ intents = discord.Intents.default()
 intents.members = True
 intents.typing = True
 xmes = 0
-loop_var = sheet.cell(1,12).value
-loop2_var = sheet.cell(1,13).value
-svar = sheet.cell(1,9).value
 urlinp = 'https://chart-studio.plotly.com/~spicy_lemon/1/.png'
 tz = timezone('EST')
 client = commands.Bot(command_prefix='g!', intents=intents, help_command=None)
@@ -40,6 +37,9 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 sheet_client = gspread.authorize(creds)
 sheet = sheet_client.open("test").sheet1
+loop_var = sheet.cell(1,12).value
+loop2_var = sheet.cell(1,13).value
+svar = sheet.cell(1,9).value
 
 
 @client.event
