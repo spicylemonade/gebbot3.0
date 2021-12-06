@@ -54,7 +54,7 @@ async def on_ready():
         loop_var = int(sheet.cell(12, 1).value)
         loop2_var = int(sheet.cell(13, 1).value)
         svar = int(sheet.cell(9, 1).value)
-        await asyncio.sleep(160)
+        await asyncio.sleep(180)
         new_now = datetime.now(tz)
         timey = new_now.strftime("%H")
         """if timey == '00':
@@ -79,7 +79,7 @@ async def on_ready():
                   json.dump(data, f)
                 await asyncio.sleep(3600)"""
 
-        if timey == "01":
+        if timey == "00":
             datey = datetime.today().strftime('%d %m %Y')
             day, month, year = (int(i) for i in datey.split(' '))
             weday = date(int(year), int(month), int(day))
