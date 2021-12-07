@@ -576,7 +576,7 @@ async def update_name(ctx):
         sheet2.append_row([str(ctx.author.id), 0])
 async def update_data(ctx,exp):
     cell2 = sheet2.find(str(ctx.author.id))
-    sheet.update_cell(cell2.row,2,float(sheet2.cell(cell2.row,2).value) + exp)
+    sheet.update_cell(cell2.row,2,float(sheet2.cell(cell2.row,2).value) + float(exp))
 
 async def update_gamble(ctx,exp,tg):
     cell2 = sheet2.find(str(ctx.author.id))
