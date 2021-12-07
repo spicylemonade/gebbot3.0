@@ -34,8 +34,9 @@ client = commands.Bot(command_prefix='g!', intents=intents, help_command=None)
 import gspread
 from pprint import pprint
 from oauth2client.service_account import ServiceAccountCredentials
-
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
+         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+scope2 = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 ecreds = ServiceAccountCredentials.from_json_keyfile_name("ecreds.json", scope)
