@@ -548,6 +548,7 @@ async def notknown(ctx):
 
 @client.command()
 async def bank(ctx):
+    sheet2 = sheet_client.open("economy").sheet1
     global col2
     col2 = sheet2.col_values(1)
     await update_name(ctx)
@@ -556,6 +557,7 @@ async def bank(ctx):
 
 @client.command()
 async def work(ctx):
+    sheet2 = sheet_client.open("economy").sheet1
     global col2
     col2 = sheet2.col_values(1)
     await update_name(ctx)
@@ -565,6 +567,7 @@ async def work(ctx):
          
 @client.command()
 async def gamble(ctx,value,tg):
+    sheet2 = sheet_client.open("economy").sheet1
     global col2
     col2 = sheet2.col_values(1)
     await update_name(ctx)
@@ -572,13 +575,17 @@ async def gamble(ctx,value,tg):
 
 
 async def update_name(ctx):
+    sheet2 = sheet_client.open("economy").sheet1
     if not str(ctx.author.id) in col2:
         sheet2.append_row([str(ctx.author.id), 0])
+
 async def update_data(ctx,exp):
+    sheet2 = sheet_client.open("economy").sheet1
     cell2 = sheet2.find(str(ctx.author.id))
-    sheet2.update_cell(cell2.row,2,float(sheet2.cell(cell2.row,2).value) + float(exp))
+    sheet2.update_cell(cell2.row,2,float(sheet2.cell(cell2.row,2).value) + exp)
 
 async def update_gamble(ctx,exp,tg):
+    sheet2 = sheet_client.open("economy").sheet1
     cell2 = sheet2.find(str(ctx.author.id))
     gam_choice = random.choice(['heads','tails'])
     if float(exp) > float(sheet2.cell(cell2.row, 2).value):
