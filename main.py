@@ -563,7 +563,17 @@ async def work(ctx):
     work_val = random.uniform(1,60)
     await update_data(ctx,work_val)
     await ctx.send(f"you earned ${work_val}")
-         
+
+@client.command()
+async def rob(ctx,name):
+    sheet2 = sheet_client.open("economy").sheet1
+    global col2
+    col2 = sheet2.col_values(1)
+    guild = client.get_guild(761311676049915985)
+    user = discord.utils.get(guild.members, name=[:-5], discriminator=name[-4:])
+    await update_name(ctx)
+    cell3 = float(sheet.cell(cell2.row,2).value)
+    await update_rob(ctx,name,random.uniform(0,(cell3*0.50)))
 @client.command()
 async def gamble(ctx,value,tg):
     sheet2 = sheet_client.open("economy").sheet1
@@ -577,6 +587,14 @@ async def update_name(ctx):
     sheet2 = sheet_client.open("economy").sheet1
     if not str(ctx.author.id) in col2:
         sheet2.append_row([str(ctx.author.id), 0])
+async def update_rob(ctx,user,exp):
+    cell2 = sheet2.find(str(ctx.author.id))
+    sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) + exp)
+    if not str(user) in sheet2:
+         await ctx.send('they dont exist')
+    else:
+             cell3 =sheet2.find(str(user))
+             sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) - exp)
 
 async def update_data(ctx,exp):
     sheet2 = sheet_client.open("economy").sheet1
