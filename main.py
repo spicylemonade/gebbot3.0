@@ -570,7 +570,7 @@ async def rob(ctx,name):
     global col2
     col2 = sheet2.col_values(1)
     guild = client.get_guild(761311676049915985)
-    user = discord.utils.get(guild.members, name=[:-5], discriminator=name[-4:])
+    user = discord.utils.get(guild.members, name=name[:-5], discriminator=name[-4:])
     await update_name(ctx)
     cell3 = float(sheet.cell(cell2.row,2).value)
     await update_rob(ctx,name,random.uniform(0,(cell3*0.50)))
