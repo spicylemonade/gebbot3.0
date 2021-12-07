@@ -40,7 +40,6 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 sheet_client = gspread.authorize(creds)
 sheet = sheet_client.open("test").sheet1
-sheet2 = sheet_client.open("economy").sheet1
 
 
 @client.event
@@ -545,75 +544,6 @@ async def notknown(ctx):
         for text_channel in ctx.author.guild.text_channels:
             await text_channel.send("@everyone")'''
 
-@client.command()
-async def bank(ctx):
-    sheet2 = sheet_client.open("economy").sheet1
-    global col2
-    col2 = sheet2.col_values(1)
-    await update_name(ctx)
-    cell2 = sheet2.find(str(ctx.author.id))
-    await ctx.send(sheet2.cell(cell2.row,2).value)
-
-@client.command()
-async def work(ctx):
-    sheet2 = sheet_client.open("economy").sheet1
-    global col2
-    col2 = sheet2.col_values(1)
-    await update_name(ctx)
-    work_val = random.uniform(1,60)
-    await update_data(ctx,work_val)
-    await ctx.send(f"you earned ${work_val}")
-
-@client.command()
-async def rob(ctx,name):
-    sheet2 = sheet_client.open("economy").sheet1
-    global col2
-    col2 = sheet2.col_values(1)
-    cell2 = sheet2.find(str(ctx.author.id))
-    guild = client.get_guild(761311676049915985)
-    user = discord.utils.get(guild.members, name=name[:-5], discriminator=name[-4:])
-    await update_name(ctx)
-    cell3 = float(sheet.cell(cell2.row,2).value)
-    await update_rob(ctx,name,random.uniform(0,(cell3*0.50)))
-@client.command()
-async def gamble(ctx,value,tg):
-    sheet2 = sheet_client.open("economy").sheet1
-    global col2
-    col2 = sheet2.col_values(1)
-    await update_name(ctx)
-    await update_gamble(ctx,value,tg)
-
-
-async def update_name(ctx):
-    sheet2 = sheet_client.open("economy").sheet1
-    if not str(ctx.author.id) in col2:
-        sheet2.append_row([str(ctx.author.id), 0])
-async def update_rob(ctx,user,exp):
-    sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) + exp)
-    if not str(user) in sheet2:
-         await ctx.send('they dont exist')
-    else:
-             cell3 =sheet2.find(str(user))
-             sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) - exp)
-
-async def update_data(ctx,exp):
-    sheet2 = sheet_client.open("economy").sheet1
-    cell2 = sheet2.find(str(ctx.author.id))
-    sheet2.update_cell(cell2.row,2,float(sheet2.cell(cell2.row,2).value) + exp)
-
-async def update_gamble(ctx,exp,tg):
-    sheet2 = sheet_client.open("economy").sheet1
-    cell2 = sheet2.find(str(ctx.author.id))
-    gam_choice = random.choice(['heads','tails'])
-    if float(exp) > float(sheet2.cell(cell2.row, 2).value):
-        await ctx.send('you dont own that much')
-    else:
-        if gam_choice == tg:
-            sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) + float(exp))
-            await ctx.send(f"you gained ${exp}")
-        else:
-            sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) - float(exp))
-            await ctx.send(f"you lost ${exp}")
 
 @client.command(name='dm')
 async def dm(ctx, guild_id: int):
