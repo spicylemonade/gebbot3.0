@@ -38,6 +38,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+ecreds = ServiceAccountCredentials.from_json_keyfile_name("ecreds.json", scope)
 
 sheet_client = gspread.authorize(creds)
 esheet_client = gspread.authorize(ecreds)
