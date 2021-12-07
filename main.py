@@ -36,15 +36,11 @@ from pprint import pprint
 from oauth2client.service_account import ServiceAccountCredentials
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
-scope2 = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
-         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
-ecreds = ServiceAccountCredentials.from_json_keyfile_name("ecreds.json", scope)
 
 sheet_client = gspread.authorize(creds)
-esheet_client = gspread.authorize(ecreds)
 sheet = sheet_client.open("test").sheet1
-sheet2 = esheet_client.open("economy").sheet1
+sheet2 = sheet_client.open("economy").sheet1
 
 
 @client.event
