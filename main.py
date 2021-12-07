@@ -41,6 +41,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 sheet_client = gspread.authorize(creds)
 sheet = sheet_client.open("test").sheet1
+sheet2 = sheet_client.open("economy").sheet1
 
 
 @client.event
@@ -547,16 +548,16 @@ async def notknown(ctx):
 
 @client.command()
 async def bank(ctx):
-    global col
-    col = sheet.col_values(1)
+    global col2
+    col2 = sheet2.col_values(1)
     await update_name(ctx)
-    cell = sheet.find(str(ctx.author.id))
-    await ctx.send(sheet.cell(cell.row,2).value)
+    cell2 = sheet2.find(str(ctx.author.id))
+    await ctx.send(sheet2.cell(cell2.row,2).value)
 
 @client.command()
 async def work(ctx):
-    global col
-    col = sheet.col_values(1)
+    global col2
+    col2 = sheet2.col_values(1)
     await update_name(ctx)
     work_val = random.uniform(1,60)
     await update_data(ctx,work_val)
@@ -564,34 +565,30 @@ async def work(ctx):
          
 @client.command()
 async def gamble(ctx,value,tg):
-    global col
-    col = sheet.col_values(1)
+    global col2
+    col2 = sheet2.col_values(1)
     await update_name(ctx)
     await update_gamble(ctx,value,tg)
-async def gamble(ctx,value,tg):
-    global col
-    col = sheet.col_values(1)
-    await update_name(ctx)
-    await update_gamble(ctx,value,tg)
+
 
 async def update_name(ctx):
     if not str(ctx.author.id) in col:
-        sheet.append_row([str(ctx.author.id), 0])
+        sheet2.append_row([str(ctx.author.id), 0])
 async def update_data(ctx,exp):
-    cell = sheet.find(str(ctx.author.id))
-    sheet.update_cell(cell.row,2,float(sheet.cell(cell.row,2).value) + exp)
+    cell2 = sheet2.find(str(ctx.author.id))
+    sheet.update_cell(cell2.row,2,float(sheet2.cell(cell2.row,2).value) + exp)
 
 async def update_gamble(ctx,exp,tg):
-    cell = sheet.find(str(ctx.author.id))
+    cell2 = sheet2.find(str(ctx.author.id))
     gam_choice = random.choice(['heads','tails'])
-    if float(exp) > float(sheet.cell(cell.row, 2).value):
+    if float(exp) > float(sheet2.cell(cell2.row, 2).value):
         await ctx.send('you dont own that much')
     else:
         if gam_choice == tg:
-            sheet.update_cell(cell.row, 2, float(sheet.cell(cell.row, 2).value) + float(exp))
+            sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) + float(exp))
             await ctx.send(f"you gained ${exp}")
         else:
-            sheet.update_cell(cell.row, 2, float(sheet.cell(cell.row, 2).value) - float(exp))
+            sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) - float(exp))
             await ctx.send(f"you lost ${exp}")
 
 @client.command(name='dm')
