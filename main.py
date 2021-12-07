@@ -40,8 +40,9 @@ scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/au
 creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 sheet_client = gspread.authorize(creds)
+esheet_client = gspread.authorize(ecreds)
 sheet = sheet_client.open("test").sheet1
-sheet2 = sheet_client.open("economy").sheet1
+sheet2 = esheet_client.open("economy").sheet1
 
 
 @client.event
