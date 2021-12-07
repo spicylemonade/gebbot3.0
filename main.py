@@ -569,6 +569,7 @@ async def rob(ctx,name):
     sheet2 = sheet_client.open("economy").sheet1
     global col2
     col2 = sheet2.col_values(1)
+    cell2 = sheet2.find(str(ctx.author.id))
     guild = client.get_guild(761311676049915985)
     user = discord.utils.get(guild.members, name=name[:-5], discriminator=name[-4:])
     await update_name(ctx)
@@ -588,7 +589,6 @@ async def update_name(ctx):
     if not str(ctx.author.id) in col2:
         sheet2.append_row([str(ctx.author.id), 0])
 async def update_rob(ctx,user,exp):
-    cell2 = sheet2.find(str(ctx.author.id))
     sheet2.update_cell(cell2.row, 2, float(sheet2.cell(cell2.row, 2).value) + exp)
     if not str(user) in sheet2:
          await ctx.send('they dont exist')
