@@ -572,7 +572,7 @@ async def gamble(ctx,value,tg):
 
 
 async def update_name(ctx):
-    if not str(ctx.author.id) in col:
+    if not str(ctx.author.id) in col2:
         sheet2.append_row([str(ctx.author.id), 0])
 async def update_data(ctx,exp):
     cell2 = sheet2.find(str(ctx.author.id))
