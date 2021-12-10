@@ -578,7 +578,7 @@ async def work(ctx):
         await update_name(str(ctx.author.id))
         my_cursor.execute(f"SELECT work_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x=my_cursor.fetchone()
-        if x[0] >=5:
+        if x[0] >= 20:
             embedi = discord.Embed(description="you can no longer work for today")
             await ctx.send(embed=embedi)
         else:
@@ -594,7 +594,7 @@ async def work(ctx):
 async def rob(ctx, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
-        if x[0] >= 7:
+        if x[0] >= 20:
             embedi = discord.Embed(description="you can no longer rob for today")
             await ctx.send(embed=embedi)
         else:
