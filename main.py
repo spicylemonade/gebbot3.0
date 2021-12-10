@@ -618,7 +618,6 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx,choice,int(amount))
-            aft = await update_gamble(ctx,choice,int(amount))
             await ctx.send(aft)
                   
 async def update_name(ctxy):
@@ -634,12 +633,13 @@ async def update_data(ctxy,exp):
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip+ctxy+mip}")
     mydb.commit()
 async def update_rob(ctxy,member,exp):
+    global nft
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
     my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + member + mip}")
     mydb.commit()
     nft = (f"you gained/lost {exp}")
-    return nft
 async def update_gamble(ctxy,choice,exp):
+    global aft
     bum = random.choice(['heads','tails'])
     if bum == choice:
                   my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
@@ -648,7 +648,6 @@ async def update_gamble(ctxy,choice,exp):
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you lost'+str(exp)
         mydb.commit()
-        return aft
          
         
 async def work_loop():
