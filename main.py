@@ -602,7 +602,7 @@ async def rob(ctx, user: discord.Member):
             #only if robbee is offline
             #first=my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + wo[1] + mip}")
             member = str(user.id)
-            my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(user.id) + mip}")
             for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
             f = random.randrange(0,int(float(t)))
