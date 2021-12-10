@@ -594,7 +594,7 @@ async def work(ctx):
 async def rob(ctx, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
-        if x[0] >= 5:
+        if x[0] >= 7:
             embedi = discord.Embed(description="you can no longer rob for today")
             await ctx.send(embed=embedi)
         else:
@@ -605,7 +605,7 @@ async def rob(ctx, user: discord.Member):
             my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
-            await update_rob(str(ctx.author.id),member,random.uniform(0,(float(t)*0.50)))
+            await update_rob(str(ctx.author.id),member,random.randrange(0,int(float(t)*0.50)))
             embedi = discord.Embed(title="Rob",description=nft)
                 
             await ctx.send(embed=embedi)
