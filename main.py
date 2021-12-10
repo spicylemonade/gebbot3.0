@@ -570,7 +570,7 @@ async def bank(ctx):
         for x in my_cursor:
             x=functools.reduce(operator.add, (x))
             embedi = discord.Embed(value='$'+str(x))
-            await ctx.send(embedi=embed)
+            await ctx.send(embed=embedi)
         
 @client.command()
 async def work(ctx):
@@ -580,14 +580,14 @@ async def work(ctx):
         x=my_cursor.fetchone()
         if x[0] >=5:
             embedi = discord.Embed(value="you can no longer work for today")
-            await ctx.send(embedi=embed)
+            await ctx.send(embed=embedi)
         else:
             b =random.randrange(1,60)
             await update_data(str(ctx.author.id),b)
             my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             mydb.commit()
             embedi = discord.Embed(title="*insert job", value="you gained: "+ str(b))
-            await ctx.send(embedi=embed)
+            await ctx.send(embed=embedi)
          
        
 @client.command()
@@ -595,7 +595,8 @@ async def rob(ctx, *, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
         if x[0] >= 5:
-            await ctx.send('you can no longer rob for today')
+            embedi = discord.Embed(value="you can no longer rob for today")
+            await ctx.send(embed=embedi)
         else:
             my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             #only if robbee is offline
@@ -606,7 +607,7 @@ async def rob(ctx, *, user: discord.Member):
                 await update_rob(str(ctx.author.id),member,random.uniform(0,(float(a)*0.50)))
                 embedi = discord.Embed(title="Rob",value=nft)
                 
-                await ctx.send(embedi=embed)
+                await ctx.send(embed=embedi)
          
        
 @client.command()
@@ -617,11 +618,12 @@ async def gamble(ctx, choice, amount):
             x = functools.reduce(operator.add, (x))
             print(x)
         if int(amount) > x:
-            await ctx.send('you do not own that much')
+            embedi = discord.Embed(title="gammble", value="yo dont own that much")
+            await ctx.send(embed=embedi)
         else:
             print(choice)
             print(amount)
-            await update_gamble(ctx,choice,int(amount))
+            await update_gamble(ctx.author.id,choice,int(amount))
             embedi = discord.Embed(title="gammble", value=aft)
             await ctx.send(embed=embedi)
                   
