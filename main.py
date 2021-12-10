@@ -607,7 +607,7 @@ async def rob(ctx, user: discord.Member):
                 t=functools.reduce(operator.add, (t))
                 print("the val", t)
                 t=int(t)
-            f = random.randint(1,t)
+            f = random.randrange(1,t)
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),member,f)
             embedi = discord.Embed(title="Rob",description=nft)
