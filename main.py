@@ -638,12 +638,25 @@ async def update_gamble(ctxy,choice,exp):
     if bum == choice:
         my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you gained'+str(exp)
-         await ctxy.send(aft)
+        await ctxy.send(aft)
     else:
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you lost'+str(exp)
         await ctxy.send(aft)
     mydb.commit()
+         
+        
+async def work_loop():
+         while True:
+                  new_now = datetime.now(tz)
+                  timey = new_now.strftime("%H")
+                  if timey == '00' or '01':
+                           my_cursor.execute(f"UPDATE geb_economy SET rob_var=0")
+                           my_cursor.execute(f"UPDATE geb_economy SET qork_var=0")
+                           mydb.commit()
+                           
+                  asyncio.sleep(2600)
+         
 
 
 
