@@ -643,10 +643,10 @@ async def update_gamble(ctxy,choice,exp):
     bum = random.choice(['heads','tails'])
     if bum == choice:
                   my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
-                  aft = 'you gained'+str(exp)
+                  aft = 'you gained: '+str(exp)
     else:
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
-        aft = 'you lost'+str(exp)
+        aft = 'you lost: '+str(exp)
         mydb.commit()
          
         
