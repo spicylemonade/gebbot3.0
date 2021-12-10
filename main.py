@@ -636,14 +636,14 @@ async def update_rob(ctxy,member,exp):
 async def update_gamble(ctxy,choice,exp):
     bum = random.choice(['heads','tails'])
     if bum == choice:
-        my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
-        aft = 'you gained'+str(exp)
-        await ctxy.send(aft)
+                  my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
+                  aft = 'you gained'+str(exp)
+                  await ctxy.send(aft)
     else:
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you lost'+str(exp)
         await ctxy.send(aft)
-    mydb.commit()
+     mydb.commit()
          
         
 async def work_loop():
