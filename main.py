@@ -619,7 +619,7 @@ async def update_name(ctxy):
     my_cursor.execute("SELECT * FROM geb_economy;")
     mip = "'"
     all_p = str(my_cursor.fetchall())
-    if not ctxy in all_p:
+    if not str(ctxy) in all_p:
             my_cursor.execute(f"INSERT INTO geb_economy (discord_id,money,job,work_var,rob_var) VALUES({mip+ctxy+mip},0,'nothing',0,0)")
             mydb.commit()
         
