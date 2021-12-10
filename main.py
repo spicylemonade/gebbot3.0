@@ -564,7 +564,7 @@ async def dm(ctx, guild_id: int):
 async def bank(ctx):
         global mip
         mip = "'"
-        await update_name(ctx.author.id)
+        await update_name(str(ctx.author.id))
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+ctx.author.id+mip}")
 
         for x in my_cursor:
@@ -574,14 +574,14 @@ async def bank(ctx):
 @client.command()
 async def work(ctx):
         mip = "'"
-        await update_name(ctx.author.id)
+        await update_name(str(ctx.author.id))
         my_cursor.execute(f"SELECT work_var FROM geb_economy WHERE discord_id = {mip + ctx.author.id + mip}")
         x=my_cursor.fetchone()
         if x[0] >=5:
             print('you can no longer work for today')
         else:
             b =random.randint(1,60)
-            await update_data(ctx.author.id,b)
+            await update_data(str(ctx.author.id),b)
             my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + ctx.author.id + mip}")
             my_cursor.execute(f"SELECT work_var FROM geb_economy WHERE discord_id = {mip + ctx.author.id + mip}")
             mydb.commit()
@@ -590,22 +590,22 @@ async def work(ctx):
        
 @client.command()
 async def rob(ctx, *, user: discord.Member):
-        my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + ctx.client.id + mip}")
+        my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.client.id) + mip}")
         x = my_cursor.fetchone()
         if x[0] >= 5:
             print('you can no longer rob for today')
         else:
-            my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + ctx.client.id + mip}")
+            my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.client.id) + mip}")
             #only if robbee is offline
             #first=my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + wo[1] + mip}")
-            member = user.id
+            member = str(user.id)
             for a in my_cursor:
                 a=functools.reduce(operator.add, (a))
-                await update_rob(ctx.author.id,member,random.uniform(0,(float(a)*0.50)))
+                await update_rob(str(ctx.author.id),member,random.uniform(0,(float(a)*0.50)))
        
 @client.command()
 async def gamble(ctx, choice, amount):
-        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + ctx.author.id + mip}")
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + str(ctx.client.id) + mip}")
 
         for x in my_cursor:
             x = functools.reduce(operator.add, (x))
