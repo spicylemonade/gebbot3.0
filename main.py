@@ -569,7 +569,8 @@ async def bank(ctx):
 
         for x in my_cursor:
             x=functools.reduce(operator.add, (x))
-            await ctx.send('$'+str(x))
+            embedi = discord.Embed(value='$'+str(x))
+            await ctx.send(embedi=embed)
         
 @client.command()
 async def work(ctx):
@@ -578,13 +579,15 @@ async def work(ctx):
         my_cursor.execute(f"SELECT work_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x=my_cursor.fetchone()
         if x[0] >=5:
-            await ctx.send('you can no longer work for today')
+            embedi = discord.Embed(value="you can no longer work for today")
+            await ctx.send(embedi=embed)
         else:
             b =random.randrange(1,60)
             await update_data(str(ctx.author.id),b)
             my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             mydb.commit()
-            await ctx.send("you gained: "+ str(b))
+            embedi = discord.Embed(title="*insert job", value="you gained: "+ str(b))
+            await ctx.send(embedi=embed)
          
        
 @client.command()
@@ -601,8 +604,9 @@ async def rob(ctx, *, user: discord.Member):
             for a in my_cursor:
                 a=functools.reduce(operator.add, (a))
                 await update_rob(str(ctx.author.id),member,random.uniform(0,(float(a)*0.50)))
-                nft = update_rob()
-                await ctx.send(nft)
+                embedi = discord.Embed(title="Rob",value=nft)
+                
+                await ctx.send(embedi=embed)
          
        
 @client.command()
@@ -618,7 +622,8 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx,choice,int(amount))
-            await ctx.send(aft)
+            embedi = discord.Embed(title="gammble", value=aft)
+            await ctx.send(embed=embedi)
                   
 async def update_name(ctxy):
     my_cursor.execute("SELECT * FROM geb_economy;")
