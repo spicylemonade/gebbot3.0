@@ -602,9 +602,9 @@ async def rob(ctx, user: discord.Member):
             #only if robbee is offline
             #first=my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + wo[1] + mip}")
             member = str(user.id)
-            for a in my_cursor:
-                a=functools.reduce(operator.add, (a))
-            await update_rob(str(ctx.author.id),member,random.uniform(0,(float(a)*0.50)))
+            for x in my_cursor:
+                x=functools.reduce(operator.add, (x))
+            await update_rob(str(ctx.author.id),member,random.uniform(0,(float(x)*0.50)))
             embedi = discord.Embed(title="Rob",description=nft)
                 
             await ctx.send(embed=embedi)
