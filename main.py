@@ -605,7 +605,7 @@ async def rob(ctx, user: discord.Member):
             my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(user.id) + mip}")
             for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
-            f = random.randrange(1,int(t))
+            f = random.randint(1,t)
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),member,f)
             embedi = discord.Embed(title="Rob",description=nft)
