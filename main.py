@@ -601,6 +601,9 @@ async def rob(ctx, *, user: discord.Member):
             for a in my_cursor:
                 a=functools.reduce(operator.add, (a))
                 await update_rob(str(ctx.author.id),member,random.uniform(0,(float(a)*0.50)))
+                nft = update_rob()
+                await ctx.send(nft)
+         
        
 @client.command()
 async def gamble(ctx, choice, amount):
@@ -615,6 +618,8 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx,choice,int(amount))
+            aft = update_gamble()
+            await ctx.send(aft)
                   
 async def update_name(ctxy):
     my_cursor.execute("SELECT * FROM geb_economy;")
@@ -632,17 +637,16 @@ async def update_rob(ctxy,member,exp):
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
     my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + member + mip}")
     mydb.commit()
-    await ctxy.send(f"you gained/lost {exp}")
+    nft = (f"you gained/lost {exp}")
 async def update_gamble(ctxy,choice,exp):
     bum = random.choice(['heads','tails'])
     if bum == choice:
                   my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
                   aft = 'you gained'+str(exp)
-                  await ctxy.send(aft)
     else:
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you lost'+str(exp)
-        await ctxy.send(aft)
+        return aft
      mydb.commit()
          
         
