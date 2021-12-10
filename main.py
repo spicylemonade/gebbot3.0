@@ -569,7 +569,7 @@ async def bank(ctx):
 
         for x in my_cursor:
             x=functools.reduce(operator.add, (x))
-            await ctx.send('$',x)
+            await ctx.send('$'+str(x))
         
 @client.command()
 async def work(ctx):
@@ -585,7 +585,7 @@ async def work(ctx):
             my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             my_cursor.execute(f"SELECT work_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             mydb.commit()
-            await ctx.send("you gained: ",b)
+            await ctx.send("you gained: "+str(b))
          
        
 @client.command()
@@ -593,7 +593,7 @@ async def rob(ctx, *, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
         if x[0] >= 5:
-            print('you can no longer rob for today')
+            await ctx.send('you can no longer rob for today')
         else:
             my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             #only if robbee is offline
@@ -636,10 +636,10 @@ async def update_gamble(ctxy,choice,exp):
     bum = random.choice(['heads','tails'])
     if bum == choice:
         my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
-        await ctxy.send('you gained',exp)
+        await ctxy.send('you gained'+str(exp))
     else:
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + ctxy + mip}")
-        await ctxy.send('you lost', exp)
+        await ctxy.send('you lost'+str(exp))
     mydb.commit()
 
 
