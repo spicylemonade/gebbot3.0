@@ -615,7 +615,6 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx,choice,int(amount))
-            await ctx.send(aft)
                   
 async def update_name(ctxy):
     my_cursor.execute("SELECT * FROM geb_economy;")
@@ -639,11 +638,12 @@ async def update_gamble(ctxy,choice,exp):
     if bum == choice:
         my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you gained'+str(exp)
+         await ctxy.send(aft)
     else:
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you lost'+str(exp)
+        await ctxy.send(aft)
     mydb.commit()
-    return aft
 
 
 
