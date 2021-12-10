@@ -618,7 +618,7 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx,choice,int(amount))
-            aft = update_gamble()
+            aft = update_gamble(ctx,choice,int(amount))
             await ctx.send(aft)
                   
 async def update_name(ctxy):
