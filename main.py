@@ -610,8 +610,10 @@ async def gamble(ctx, choice, amount):
             x = functools.reduce(operator.add, (x))
             print(x)
         if int(amount) > x:
-            print('you do not own that much')
+            await ctx.send('you do not own that much')
         else:
+            print(choice)
+            print(amount)
             await update_gamble(ctx,choice,int(amount))
             await ctx.send(aft)
                   
@@ -635,10 +637,10 @@ async def update_rob(ctxy,member,exp):
 async def update_gamble(ctxy,choice,exp):
     bum = random.choice(['heads','tails'])
     if bum == choice:
-        my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
+        my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you gained'+str(exp)
     else:
-        my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + ctxy + mip}")
+        my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you lost'+str(exp)
     mydb.commit()
     return aft
