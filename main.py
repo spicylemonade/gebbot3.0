@@ -40,7 +40,15 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 sheet_client = gspread.authorize(creds)
 sheet = sheet_client.open("test").sheet1
+import mysql.connector
+import functools
+import operator
 
+mydb = mysql.connector.connect(host="sql3.freesqldatabase.com", user="sql3457738",passwd="5yaY5uJkFV",database="sql3457738",port=3306)
+print(mydb)
+my_cursor = mydb.cursor()
+#boo=input("name: ")
+mip = "'"
 
 @client.event
 async def on_ready():
@@ -551,6 +559,89 @@ async def dm(ctx, guild_id: int):
     channel = guild.channels[0]
     invitelink = await channel.create_invite(max_uses=1)
     await ctx.author.send(invitelink)
+       
+@client.command()
+async def bank(ctx):
+        global mip
+        mip = "'"
+        await update_name(ctx.author.id)
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+wo[ctx.author.id]+mip}")
+
+        for x in my_cursor:
+            x=functools.reduce(operator.add, (x))
+            await ctx.send('$',x)
+        
+@client.command()
+async def work(ctx):
+        mip = "'"
+        await update_name(ctx.author.id)
+        my_cursor.execute(f"SELECT work_var FROM geb_economy WHERE discord_id = {mip + ctx.author.id + mip}")
+        x=my_cursor.fetchone()
+        if x[0] >=5:
+            print('you can no longer work for today')
+        else:
+            b =random.randint(1,60)
+            await update_data(ctx.author.id,b)
+            my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + ctx.author.id + mip}")
+            my_cursor.execute(f"SELECT work_var FROM geb_economy WHERE discord_id = {mip + ctx.author.id + mip}")
+            mydb.commit()
+            await ctx.send("you gained: ",b)
+         
+       
+@client.command()
+async def rob(ctx, *, user: discord.Member):
+        my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + ctx.client.id + mip}")
+        x = my_cursor.fetchone()
+        if x[0] >= 5:
+            print('you can no longer rob for today')
+        else:
+            my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + ctx.client.id + mip}")
+            #only if robbee is offline
+            #first=my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + wo[1] + mip}")
+            member = user.id
+            for a in my_cursor:
+                a=functools.reduce(operator.add, (a))
+                await update_rob(ctx.author.id,member,random.uniform(0,(float(a)*0.50)))
+       
+@client.command()
+async def gamble(ctx, choice, amount):
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + ctx.author.id + mip}")
+
+        for x in my_cursor:
+            x = functools.reduce(operator.add, (x))
+            print(x)
+        if int(amount) > x:
+            print('you do not own that much')
+        else:
+            await update_gamble(ctx,choice,int(amount))
+                  
+async def update_name(ctxy):
+    my_cursor.execute("SELECT * FROM geb_economy;")
+    mip = "'"
+    all_p = str(my_cursor.fetchall())
+    if not ctx in all_p:
+            my_cursor.execute(f"INSERT INTO geb_economy (discord_id,money,job,work_var,rob_var) VALUES({mip+ctxy+mip},0,'nothing',0,0)")
+            mydb.commit()
+        
+async def update_data(ctxy,exp):
+    mip ="'"
+    my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip+ctxy+mip}")
+    mydb.commit()
+async def update_rob(ctxy,member,exp):
+    my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
+    my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + member + mip}")
+    mydb.commit()
+    await ctxy.send(f"you gained/lost {exp}")
+async def update_gamble(ctxy,choice,exp):
+    bum = random.choice(['heads','tails'])
+    if bum == choice:
+        my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
+        await ctxy.send('you gained',exp)
+    else:
+        my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + ctxy + mip}")
+        await ctxy.send('you lost', exp)
+    mydb.commit()
+
 
 
 @client.command()
