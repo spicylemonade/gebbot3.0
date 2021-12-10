@@ -121,7 +121,6 @@ async def on_message(message):
     elif message.guild.id == 761311676049915985:
         xmes += 1
         sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
-        print(xmes)
     username = message.author.name
     embed = discord.Embed(title=":game_die:",
                           description=str(random.randint(1, 100)),
