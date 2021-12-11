@@ -620,7 +620,7 @@ async def give(ctx,amount,*, user: discord.Member):
             embedi = discord.Embed(title="gammble", description="yo dont own that much")
             await ctx.send(embed=embedi)
         else:
-         await update_rob(str(ctx.author.id),user,int(amount))
+         await update_give(str(ctx.author.id),user,int(amount))
          embedi = discord.Embed(title="transfer :gift:", description =f"successfully transfered ${amount} to {user.name}", color=(0x25be2a))
          await ctx.send(embed=embedi)
          
@@ -699,6 +699,11 @@ async def update_rob(ctxy,user,exp):
     my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(member) + mip}")
     mydb.commit()
     nft = (f"you stole ${exp} from {user.name}")
+async def update_give(ctxy,user,exp):
+    member =user.id
+    my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + ctxy + mip}")
+    my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(member) + mip}")
+    mydb.commit()
 async def update_gamble(ctxy,choice,exp):
     global aft
     global col_val
