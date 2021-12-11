@@ -44,7 +44,7 @@ import mysql.connector
 import functools
 import operator
 
-mydb = mysql.connector.connect(host="sql3.freesqldatabase.com", user="sql3457738",passwd="5yaY5uJkFV",database="sql3457738",port=3306)
+mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
 print(mydb)
 my_cursor = mydb.cursor(buffered=True)
 #boo=input("name: ")
