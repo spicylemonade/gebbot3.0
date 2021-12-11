@@ -671,13 +671,11 @@ async def rob(ctx,*, user: discord.Member):
             embedi = discord.Embed(description="you can no longer rob for today")
             await ctx.send(embed=embedi)
         else:
-            my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
-            mydb.commit()
+            #my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             member = str(user.id)
             my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + member + mip}")
-            the_result= my_cursor.fetchone()
-            print(the_result)
-            for t in the_result:
+            print(my_cursor)
+            for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
                 t=int(t)
                 print("mmmmm",t)
