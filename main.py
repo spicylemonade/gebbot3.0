@@ -669,23 +669,25 @@ async def gamble(ctx, choice, amount):
         for x in my_cursor:
             x = functools.reduce(operator.add, (x))
             print(x)
-        if int(amount) > x:
-            embedi = discord.Embed(title="gammble", description="yo dont own that much")
-            await ctx.send(embed=embedi)
-        elif int(amount) <= x:
-            print(choice)
-            print(amount)
-            await update_gamble(ctx.author.id,choice,int(amount))
-            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
-            await ctx.send(embed=embedi)
-        elif amount == 'all':
-            await update_gamble(ctx.author.id,choice,int(x))
-            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
-            await ctx.send(embed=embedi)
-        elif amount == 'half':
-            await update_gamble(ctx.author.id,choice,int(int(x)/2))
-            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
-            await ctx.send(embed=embedi)
+        if amount.isnumeric == True:
+                 if int(amount) > x:
+                     embedi = discord.Embed(title="gammble", description="yo dont own that much")
+                     await ctx.send(embed=embedi)
+                 elif int(amount) <= x:
+                     print(choice)
+                     print(amount)
+                     await update_gamble(ctx.author.id,choice,int(amount))
+                     embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
+                     await ctx.send(embed=embedi)
+        else:
+                 if amount == 'all':
+                     await update_gamble(ctx.author.id,choice,int(x))
+                     embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
+                     await ctx.send(embed=embedi)
+                 elif amount == 'half':
+                     await update_gamble(ctx.author.id,choice,int(int(x)/2))
+                     embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
+                     await ctx.send(embed=embedi)
             
                   
 async def update_name(ctxy):
