@@ -614,6 +614,33 @@ async def work(ctx):
                 print("the val", t)
             embedi = discord.Embed(title=f":necktie: {t}", description="you gained: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
+
+
+@client.command()
+async def learn(ctx):
+        mip = "'"
+        await update_name(str(ctx.author.id))
+        my_cursor.execute(f"SELECT edu_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+        x=my_cursor.fetchone()
+        if x[0] >= 10:
+            embedi = discord.Embed(description="you can no learn for today")
+            await ctx.send(embed=embedi)
+        else:
+            my_cursor.execute(f"SELECT education FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            for m in my_cursor:
+                m=functools.reduce(operator.add, (m))
+            await edu_list(m)
+            b =y_edu
+            await update_data(str(ctx.author.id),b)
+            my_cursor.execute(f"UPDATE geb_economy SET edu_var=edu_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            my_cursor.execute(f"UPDATE geb_economy SET total_edu_var=total_edu_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            mydb.commit()
+            my_cursor.execute(f"SELECT education FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            for t in my_cursor:
+                t=functools.reduce(operator.add, (t))
+                print("the val", t)
+            embedi = discord.Embed(title=f":mortar_board: {t}", description="tuition cost: $"+ str(b), color=(0x25be2a))
+            await ctx.send(embed=embedi)
                   
                   
                  
@@ -783,6 +810,24 @@ async def job_list(m):
         y_job=-250
     elif m == 'bussiness_major':
         y_job=-300
+async def edu_list(m):
+    global y_edu
+    if m == 'english_major':
+        y_edu=-90
+    elif m == 'food_major':
+        y_edu=-110
+    elif m == 'art_major':
+        y_edu=-140
+    elif m == 'chem_major':
+        y_edu=-160
+    elif m== 'health_major':
+        y_edu=-180
+    elif m == 'compsci_major':
+        y_edu=-250
+    elif m == 'politics_major':
+        y_edu=-300
+    elif m == 'bussiness_major':
+        y_edu=-400
 
 
         
@@ -793,6 +838,7 @@ async def work_loop():
                   if timey == '00' or '01':
                            my_cursor.execute(f"UPDATE geb_economy SET rob_var=0")
                            my_cursor.execute(f"UPDATE geb_economy SET qork_var=0")
+                           my_cursor.execute(f"UPDATE geb_economy SET edu_var=0")
                            mydb.commit()
                            
                   await asyncio.sleep(2600)
