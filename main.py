@@ -27,6 +27,7 @@ client = discord.Client()
 intents = discord.Intents.default()
 intents.members = True
 intents.typing = True
+intents.presences = True
 xmes = 0
 urlinp = 'https://chart-studio.plotly.com/~spicy_lemon/1/.png'
 tz = timezone('EST')
@@ -633,7 +634,7 @@ async def give(ctx,amount,*, user: discord.Member):
 async def rob(ctx,*, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
-        if x[0] >= 20:
+        if :
             embedi = discord.Embed(description="you can no longer rob for today")
             await ctx.send(embed=embedi)
         else:
@@ -647,6 +648,9 @@ async def rob(ctx,*, user: discord.Member):
                 print("the val", t)
                 t=int(t)
             f = random.randrange(1,t)
+                  if x[0] >= 10:
+                           if user.status == discord.Status.online:
+                                    f = random.randrange(1,f)
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),user,f)
             embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
