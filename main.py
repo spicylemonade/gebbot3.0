@@ -679,20 +679,20 @@ async def rob(ctx,*, user: discord.Member):
                 t=functools.reduce(operator.add, (t))
                 t=int(t)
                 print("mmmmm",t)
-            f = random.randrange(1,t)
-            if x[0] >= 7:
-                     if user.status != discord.Status.offline:
-                             print(user.status)
-                             f = random.randrange(1,f)
-                             f = random.randrange(1,f)
-                             f= int(f*.5)
-                             #lowers the rate if the robber is offline
+                f = random.randrange(1,t)
+                if x[0] >= 7:
+                        if user.status != discord.Status.offline:
+                                print(user.status)
+                                f = random.randrange(1,f)
+                                f = random.randrange(1,f)
+                                f= int(f*.5)
+                                #lowers the rate if the robber is offline
                              
-            f = int(f*0.5)
-            await update_rob(str(ctx.author.id),user,f)
-            embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
-                
-            await ctx.send(embed=embedi)
+                f = int(f*0.5)
+                await update_rob(str(ctx.author.id),user,f)
+                embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
+                    
+                await ctx.send(embed=embedi)
          
        
 @client.command()
