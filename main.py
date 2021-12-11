@@ -45,9 +45,9 @@ import mysql.connector
 import functools
 import operator
 
-mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
-print(mydb)
-my_cursor = mydb.cursor(buffered=True)
+#mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
+#print(mydb)
+#my_cursor = mydb.cursor(buffered=True)
 #boo=input("name: ")
 mip = "'"
 
