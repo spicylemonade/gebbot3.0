@@ -54,6 +54,8 @@ mip = "'"
 async def on_ready():
     global xmes
     print("bot ready")
+    await m_loop()
+    await work_loop()
     while True:
         global svar
         global loop_var
@@ -680,10 +682,6 @@ async def m_loop():
                   mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
                   
                 
-        
-asyncio.run(m_loop())
-asyncio.run(work_loop())
-         
 
 
 
