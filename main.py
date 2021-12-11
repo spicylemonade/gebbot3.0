@@ -648,12 +648,12 @@ async def rob(ctx,*, user: discord.Member):
                 print("the val", t)
                 t=int(t)
             f = random.randrange(1,t)
-            if x[0] >= 10:
+            if x[0] >= 7:
                      if user.status != discord.Status.offline:
                              print(user.status)
                              f = random.randrange(1,f)
                              f = random.randrange(1,f)
-                             f = random.randrange(1,f)
+                             f= int(f*.5)
                              
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),user,f)
