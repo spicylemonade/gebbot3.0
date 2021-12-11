@@ -669,7 +669,7 @@ async def gamble(ctx, choice, amount):
         for x in my_cursor:
             x = functools.reduce(operator.add, (x))
             print(x)
-        if amount.isnumeric == True:
+        if amount.isnumeric() == True:
                  if int(amount) > x:
                      embedi = discord.Embed(title="gammble", description="yo dont own that much")
                      await ctx.send(embed=embedi)
