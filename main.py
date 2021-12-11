@@ -649,7 +649,7 @@ async def rob(ctx,*, user: discord.Member):
                 t=int(t)
             f = random.randrange(1,t)
                   if x[0] >= 10:
-                           if user.status == discord.Status.online:
+                           if user.status != discord.Status.offline:
                                     f = random.randrange(1,f)
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),user,f)
