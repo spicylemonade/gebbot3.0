@@ -670,12 +670,12 @@ async def work_loop():
                            my_cursor.execute(f"UPDATE geb_economy SET qork_var=0")
                            mydb.commit()
                            
-                  asyncio.sleep(2600)
+                  await asyncio.sleep(2600)
                   
      
 async def m_loop():
          while True:
-                  asyncio.sleep(260)
+                  await asyncio.sleep(260)
                   global mydb
                   mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
                   
