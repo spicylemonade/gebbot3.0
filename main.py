@@ -630,8 +630,8 @@ async def rob(ctx, user: discord.Member):
                 t=int(t)
             f = random.randrange(1,t)
             f = int(f*0.5)
-            await update_rob(str(ctx.author.id),member,f)
-            embedi = discord.Embed(title="Rob :money_with_wings:",description=nft,color=(0x25be2a))
+            await update_rob(str(ctx.author.id),user,f)
+            embedi = discord.Embed(title="Robbed :interrobang:",description="money_with_wings "+nft,color=(0x25be2a))
                 
             await ctx.send(embed=embedi)
          
@@ -650,7 +650,7 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx.author.id,choice,int(amount))
-            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(0x25be2a))
+            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
             await ctx.send(embed=embedi)
                   
 async def update_name(ctxy):
@@ -665,21 +665,25 @@ async def update_data(ctxy,exp):
     mip ="'"
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip+ctxy+mip}")
     mydb.commit()
-async def update_rob(ctxy,member,exp):
+async def update_rob(ctxy,user,exp):
     global nft
+    member =user.id
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
     my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + member + mip}")
     mydb.commit()
-    nft = (f"you gained/lost {exp}")
+    nft = (f"you stole ${exp} from {user.name}")
 async def update_gamble(ctxy,choice,exp):
     global aft
+    global col_val
     bum = random.choice(['heads','tails'])
     if bum == choice:
            my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
            aft = 'you gained: $'+str(exp)
+           col_val = 0x25be2a
     else:
         my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(ctxy) + mip}")
         aft = 'you lost: $'+str(exp)
+        col_val=0xEc315a
     mydb.commit()
          
         
