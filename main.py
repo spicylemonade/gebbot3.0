@@ -14,12 +14,9 @@ from datetime import date
 from bs4 import BeautifulSoup
 import requests
 # from matplotlib import pyplot as plt
-import plotly.graph_objects as go
 
 username = 'spicy_lemon'
 import json
-import chart_studio.plotly as py
-import chart_studio.tools as tls
 
 SPAM_MESSAGE = ["@everyone rip server :("]
 SPAM_MESSAGE2 = ["hello"]
@@ -41,16 +38,12 @@ creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
 
 sheet_client = gspread.authorize(creds)
 sheet = sheet_client.open("test").sheet1
+#this is for connecting to google sheets
 import mysql.connector
 import functools
 import operator
-
-#mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
-#print(mydb)
-#my_cursor = mydb.cursor(buffered=True)
-#boo=input("name: ")
 mip = "'"
-
+#this is for edditng values and shwing them in mysql
 @client.event
 async def on_connect():
          await m_loop()
@@ -192,7 +185,7 @@ async def sinfo(ctx):
                      value=len(ctx.message.guild.roles),
                      inline=True)
     await ctx.send(embed=embeda)
-
+#server info
 
 @client.command(name='cmd', aliases=['help'])
 async def cmd(ctx):
@@ -240,7 +233,7 @@ async def cmd(ctx):
                      inline=True)
     await ctx.send(embed=embedi)
 
-
+#shows what the commands are
 @client.command()
 @commands.has_permissions(manage_channels=True)
 async def newchan(ctx, *, channel_name):
@@ -251,7 +244,7 @@ async def newchan(ctx, *, channel_name):
                                         category=ctx.channel.category)
     await ctx.send(embed=embednewchan)
 
-
+#add channel
 @client.command()
 @commands.has_permissions(manage_channels=True)
 async def delchan(ctx, *, channel_name):
@@ -262,7 +255,7 @@ async def delchan(ctx, *, channel_name):
         description=f"```{channel_name} channel deleted by {ctx.author}```")
     await channel_find.delete()
     await ctx.send(embed=embeddelchan)
-
+#delete channel
 
 @client.command()
 @commands.has_permissions()
@@ -376,7 +369,7 @@ async def _8ball(ctx, *, query=None):
                 description=randmsg,
                 color=(0x25be2a))
         await ctx.send(embed=embed8)
-
+#8ball
 
 snipe_message_content = None
 
@@ -629,8 +622,8 @@ async def learn(ctx):
             my_cursor.execute(f"SELECT education FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             for m in my_cursor:
                 m=functools.reduce(operator.add, (m))
-            await edu_list(m)
-            b =y_edu
+            await edu_list(m) #used to select howmuch to subtract yourmoney based on what your major is
+            b =y_edu #y_edu is the value
             await update_data(str(ctx.author.id),b)
             my_cursor.execute(f"UPDATE geb_economy SET edu_var=edu_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             my_cursor.execute(f"UPDATE geb_economy SET total_edu_var=total_edu_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
@@ -638,12 +631,13 @@ async def learn(ctx):
             my_cursor.execute(f"SELECT education FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
-                print("the val", t)
+                #t is the major you currently have
             embedi = discord.Embed(title=f":mortar_board: {t}", description="tuition cost: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
             my_cursor.execute(f"SELECT total_edu_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             for v in my_cursor:
                 v=functools.reduce(operator.add, (v))
+                #v is how many times youve learned or said g!learn in that specific major
             if v== 100:
                 my_cursor.execute(f"UPDATE geb_economy SET total_list=total_list+',{t}' WHERE discord_id = {mip + str(ctx.author.id) + mip}")
                 embedi = discord.Embed(title=f":mortar_board: {t}", description=f"you have finished your {t} major" , color=(0x25be2a))
@@ -654,6 +648,7 @@ async def learn(ctx):
 async def give(ctx,amount,*, user: discord.Member):
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
+        #x is just how much money you have
         if int(amount) > x[0]:
             embedi = discord.Embed(title="gammble", description="you dont own that much")
             await ctx.send(embed=embedi)
@@ -671,13 +666,12 @@ async def give(ctx,amount,*, user: discord.Member):
 async def rob(ctx,*, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
+        #x is how much money you have
         if x[0] >= 20:
             embedi = discord.Embed(description="you can no longer rob for today")
             await ctx.send(embed=embedi)
         else:
             my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
-            #only if robbee is offline
-            #first=my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + wo[1] + mip}")
             member = str(user.id)
             my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + member + mip}")
             for t in my_cursor:
@@ -691,6 +685,7 @@ async def rob(ctx,*, user: discord.Member):
                              f = random.randrange(1,f)
                              f = random.randrange(1,f)
                              f= int(f*.5)
+                             #lowers the rate if the robber is offline
                              
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),user,f)
@@ -734,11 +729,13 @@ async def update_name(ctxy):
     if not str(ctxy) in all_p:
             my_cursor.execute(f"INSERT INTO geb_economy (discord_id,money,job,work_var,rob_var) VALUES({mip+ctxy+mip},0,'babysiter',0,0)")
             mydb.commit()
+    # if the id isnt in the databse then it adds it in
         
 async def update_data(ctxy,exp):
     mip ="'"
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip+ctxy+mip}")
     mydb.commit()
+    #adds money or subtracts from moneyval(used generally)
 async def update_rob(ctxy,user,exp):
     global nft
     member =user.id
@@ -816,6 +813,7 @@ async def job_list(m):
         y_job=-250
     elif m == 'bussiness_major':
         y_job=-300
+#all of the jobs
 async def edu_list(m):
     global y_edu
     if m == 'english_major':
@@ -834,7 +832,7 @@ async def edu_list(m):
         y_edu=-300
     elif m == 'bussiness_major':
         y_edu=-400
-
+#all of the  majors(they subtract money)
 
         
 async def work_loop():
