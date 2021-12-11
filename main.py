@@ -669,7 +669,7 @@ async def update_rob(ctxy,user,exp):
     global nft
     member =user.id
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
-    my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + st(member) + mip}")
+    my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + str(member) + mip}")
     mydb.commit()
     nft = (f"you stole ${exp} from {user.name}")
 async def update_gamble(ctxy,choice,exp):
