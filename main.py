@@ -634,7 +634,7 @@ async def give(ctx,amount,*, user: discord.Member):
 async def rob(ctx,*, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
-        if :
+        if x[0] >= 20:
             embedi = discord.Embed(description="you can no longer rob for today")
             await ctx.send(embed=embedi)
         else:
