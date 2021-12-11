@@ -572,7 +572,7 @@ async def bank(ctx):
 
         for x in my_cursor:
             x=functools.reduce(operator.add, (x))
-            embedi = discord.Embed(description='$'+str(x))
+            embedi = discord.Embed(title=":moneybag:",description='$'+str(x),color=(0x25be2a))
             await ctx.send(embed=embedi)
         
 @client.command()
@@ -589,7 +589,8 @@ async def work(ctx):
             await update_data(str(ctx.author.id),b)
             my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             mydb.commit()
-            embedi = discord.Embed(title="*insert job", description="you gained: "+ str(b))
+            y = my_cursor.execute(f"SELECT job FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            embedi = discord.Embed(title=y, description="you gained: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
          
        
@@ -613,7 +614,7 @@ async def rob(ctx, user: discord.Member):
             f = random.randrange(1,t)
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),member,f)
-            embedi = discord.Embed(title="Rob",description=nft)
+            embedi = discord.Embed(title="Rob :money_with_wings:",description=nft,color=(0x25be2a))
                 
             await ctx.send(embed=embedi)
          
@@ -632,7 +633,7 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx.author.id,choice,int(amount))
-            embedi = discord.Embed(title="gammble", description =aft)
+            embedi = discord.Embed(title="gammble :game_die::game_die:", description =aft, color=(0x25be2a))
             await ctx.send(embed=embedi)
                   
 async def update_name(ctxy):
