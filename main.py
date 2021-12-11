@@ -736,15 +736,54 @@ async def update_gamble(ctxy,choice,exp):
 async def job_list(m):
     global y_job
     if m == 'babysiter':
-        y_job=20
+        y_job=5
     elif m == 'sign_spinner':
-        y_job=30
+        y_job=10
+    elif m == 'car_washer':
+        y_job=15
     elif m == 'cashier':
+        y_job=20
+    elif m == 'fry_cook':
+        y_job=25
+    elif m == 'barista':
+        y_job=35
+    elif m == 'daycare_assistant':
         y_job=40
-    elif m == 'frycook':
+    elif m == 'waiter':
+        y_job=45
+    elif m == 'life_gaurd':
         y_job=50
-    elif m == 'store_clerk':
+    elif m == 'house_cleaner':
+        y_job=55
+    elif m == 'mail_man':
         y_job=60
+    elif m == 'butler':
+        y_job=65
+    elif m == 'amusement_park_clerk':
+        y_job=70
+    elif m == 'phone_operaor':
+        y_job=75
+    elif m == 'icecream_truck_driver':
+        y_job=80
+    elif m == 'plumber':
+        y_job=85
+    elif m == 'construction_worker':
+        y_job=90
+    elif m == 'english_major':
+        y_job=-90
+    elif m == 'food_major':
+        y_job=-110
+    elif m == 'art_major':
+        y_job=-140
+    elif m == 'chem_major':
+        y_job=-160
+    elif m == 'compsci_major':
+        y_job=-180
+    elif m == 'politics_major':
+        y_job=-250
+    elif m == 'bussiness_major':
+        y_job=-300
+
 
         
 async def work_loop():
