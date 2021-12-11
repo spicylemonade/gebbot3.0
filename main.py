@@ -612,7 +612,7 @@ async def work(ctx):
          
        
 @client.command()
-async def rob(ctx, user: discord.Member):
+async def rob(ctx,*, user: discord.Member):
         my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
         if x[0] >= 20:
@@ -669,7 +669,7 @@ async def update_rob(ctxy,user,exp):
     global nft
     member =user.id
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip + ctxy + mip}")
-    my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + member + mip}")
+    my_cursor.execute(f"UPDATE geb_economy SET money = money-{exp} WHERE discord_id = {mip + st(member) + mip}")
     mydb.commit()
     nft = (f"you stole ${exp} from {user.name}")
 async def update_gamble(ctxy,choice,exp):
