@@ -607,7 +607,7 @@ async def work(ctx):
             for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
                 print("the val", t)
-            embedi = discord.Embed(title=f":necktie {t}", description="you gained: $"+ str(b), color=(0x25be2a))
+            embedi = discord.Embed(title=f":necktie: {t}", description="you gained: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
          
        
