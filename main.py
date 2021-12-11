@@ -641,7 +641,13 @@ async def learn(ctx):
                 print("the val", t)
             embedi = discord.Embed(title=f":mortar_board: {t}", description="tuition cost: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
-                  
+            my_cursor.execute(f"SELECT total_edu_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            for v in my_cursor:
+                v=functools.reduce(operator.add, (v))
+            if v== 100:
+                my_cursor.execute(f"UPDATE geb_economy SET total_list=total_list+',{t}' WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+                embedi = discord.Embed(title=f":mortar_board: {t}", description=f"you have finished your {t} major" , color=(0x25be2a))
+                await ctx.send(embed=embedi)
                   
                  
 @client.command()
