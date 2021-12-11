@@ -674,6 +674,7 @@ async def rob(ctx,*, user: discord.Member):
             my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             member = str(user.id)
             my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + member + mip}")
+            print(my_cursor)
             for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
                 t=int(t)
