@@ -579,7 +579,7 @@ async def bank(ctx):
          
         
 @client.command()
-async def mbank(ctx, user: discord.Member):
+async def mbank(ctx,*,user: discord.Member):
         member = str(user.id)
         await update_name(member)
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+member+mip}")
@@ -603,8 +603,11 @@ async def work(ctx):
             await update_data(str(ctx.author.id),b)
             my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             mydb.commit()
-            y = my_cursor.execute(f"SELECT job FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
-            embedi = discord.Embed(title=y, description="you gained: $"+ str(b), color=(0x25be2a))
+            my_cursor.execute(f"SELECT job FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            for t in my_cursor:
+                t=functools.reduce(operator.add, (t))
+                print("the val", t)
+            embedi = discord.Embed(title=t, description="you gained: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
          
        
@@ -647,7 +650,7 @@ async def gamble(ctx, choice, amount):
             print(choice)
             print(amount)
             await update_gamble(ctx.author.id,choice,int(amount))
-            embedi = discord.Embed(title="gammble :game_die::game_die:", description =aft, color=(0x25be2a))
+            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(0x25be2a))
             await ctx.send(embed=embedi)
                   
 async def update_name(ctxy):
