@@ -629,18 +629,18 @@ async def learn(ctx):
             my_cursor.execute(f"UPDATE geb_economy SET total_edu_var=total_edu_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             mydb.commit()
             my_cursor.execute(f"SELECT education FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
-            for t in my_cursor:
-                t=functools.reduce(operator.add, (t))
-                #t is the major you currently have
-            embedi = discord.Embed(title=f":mortar_board: {t}", description="tuition cost: $"+ str(b), color=(0x25be2a))
+            for major_name in my_cursor:
+                major_name=functools.reduce(operator.add, (major_name))
+                #major_name is the major you currently have
+            embedi = discord.Embed(title=f":mortar_board: {major_name}", description="tuition cost: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
             my_cursor.execute(f"SELECT total_edu_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             for v in my_cursor:
                 v=functools.reduce(operator.add, (v))
                 #v is how many times youve learned or said g!learn in that specific major
             if v== 100:
-                my_cursor.execute(f"UPDATE geb_economy SET total_list=total_list+',{t}' WHERE discord_id = {mip + str(ctx.author.id) + mip}")
-                embedi = discord.Embed(title=f":mortar_board: {t}", description=f"you have finished your {t} major" , color=(0x25be2a))
+                my_cursor.execute(f"UPDATE geb_economy SET total_list=total_list+',{major_name}' WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+                embedi = discord.Embed(title=f":mortar_board: {major_name}", description=f"you have finished your {major_name} major" , color=(0x25be2a))
                 await ctx.send(embed=embedi)
                   
                  
@@ -676,7 +676,6 @@ async def rob(ctx,*, user: discord.Member):
             my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + member + mip}")
             for t in my_cursor:
                 t=functools.reduce(operator.add, (t))
-                print("the val", t)
                 t=int(t)
             f = random.randrange(1,t)
             if x[0] >= 7:
