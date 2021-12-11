@@ -671,6 +671,18 @@ async def work_loop():
                            mydb.commit()
                            
                   asyncio.sleep(2600)
+                  
+     
+async def m_loop():
+         while True:
+                  asyncio.sleep(260)
+                  global mydb
+                  mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
+                  
+                
+        
+asyncio.run(m_loop())
+asyncio.run(work_loop())
          
 
 
