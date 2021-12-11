@@ -609,6 +609,24 @@ async def work(ctx):
                 print("the val", t)
             embedi = discord.Embed(title=f":necktie: {t}", description="you gained: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
+                  
+                  
+                 
+@client.command()
+async def give(ctx,amount,*, user: discord.Member):
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+        x = my_cursor.fetchone()
+        if int(amount) > x[0]:
+            embedi = discord.Embed(title="gammble", description="yo dont own that much")
+            await ctx.send(embed=embedi)
+        else:
+         await update_rob(str(ctx.author.id),user,int(amount))
+         embedi = discord.Embed(title="transfer :gift:", description =f"successfully transfered ${amount} to {user.name}", color=(0x25be2a))
+         await ctx.send(embed=embedi)
+         
+                  
+        
+
          
        
 @client.command()
@@ -631,7 +649,7 @@ async def rob(ctx,*, user: discord.Member):
             f = random.randrange(1,t)
             f = int(f*0.5)
             await update_rob(str(ctx.author.id),user,f)
-            embedi = discord.Embed(title="Robbed :interrobang:",description="money_with_wings "+nft,color=(0x25be2a))
+            embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
                 
             await ctx.send(embed=embedi)
          
@@ -646,12 +664,21 @@ async def gamble(ctx, choice, amount):
         if int(amount) > x:
             embedi = discord.Embed(title="gammble", description="yo dont own that much")
             await ctx.send(embed=embedi)
-        else:
+        elif int(amount) <= x:
             print(choice)
             print(amount)
             await update_gamble(ctx.author.id,choice,int(amount))
             embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
             await ctx.send(embed=embedi)
+        elif amount == 'all':
+            await update_gamble(ctx.author.id,choice,int(x))
+            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
+            await ctx.send(embed=embedi)
+        elif amount == 'half':
+            await update_gamble(ctx.author.id,choice,int(int(x)/2))
+            embedi = discord.Embed(title="gamble :game_die::game_die:", description =aft, color=(col_val))
+            await ctx.send(embed=embedi)
+            
                   
 async def update_name(ctxy):
     my_cursor.execute("SELECT * FROM geb_economy;")
