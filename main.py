@@ -741,10 +741,11 @@ async def work_loop():
      
 async def m_loop():
          while True:
-                  await asyncio.sleep(260)
                   global mydb
-                  mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
-                  
+                  global my_cursor
+                  mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)\
+                  my_cursor = mydb.cursor(buffered=True)
+                  await asyncio.sleep(260)
                 
 
 
