@@ -617,7 +617,7 @@ async def give(ctx,amount,*, user: discord.Member):
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
         x = my_cursor.fetchone()
         if int(amount) > x[0]:
-            embedi = discord.Embed(title="gammble", description="yo dont own that much")
+            embedi = discord.Embed(title="gammble", description="you dont own that much")
             await ctx.send(embed=embedi)
         else:
          await update_give(str(ctx.author.id),user,int(amount))
