@@ -340,7 +340,7 @@ async def _8ball(ctx, *, query=None):
         ":8ball: wow you lack self awareness",
         ":8ball: get a job bum",
         ":8ball: idk what to tell you dawg :skull_crossbones:",
-        ":8ball: yeah that’s a good idea :D",
+        ":8ball: yeah thats a good idea :D",
         ":8ball: yes<333",
         ":8ball: never know till you try?",
         ":8ball: beyond a doubt",
@@ -703,7 +703,7 @@ async def gamble(ctx, choice, amount):
             print(x)
         if amount.isnumeric() == True:
                  if int(amount) > x:
-                     embedi = discord.Embed(title="gammble", description="yo dont own that much")
+                     embedi = discord.Embed(title="gammble", description="you dont own that much")
                      await ctx.send(embed=embedi)
                  elif int(amount) <= x:
                      print(choice)
