@@ -600,7 +600,11 @@ async def work(ctx):
             embedi = discord.Embed(description="you can no longer work for today")
             await ctx.send(embed=embedi)
         else:
-            b =random.randrange(1,60)
+            my_cursor.execute(f"SELECT job FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            for m in my_cursor:
+                m=functools.reduce(operator.add, (m))
+            await job_list(m)
+            b =random.randrange(1,y_job)
             await update_data(str(ctx.author.id),b)
             my_cursor.execute(f"UPDATE geb_economy SET work_var=work_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             mydb.commit()
@@ -727,7 +731,21 @@ async def update_gamble(ctxy,choice,exp):
         aft = 'you lost: $'+str(exp)
         col_val=0xEc315a
     mydb.commit()
-         
+
+
+async def job_list(m):
+    global y_job
+    if m == 'babysiter':
+        y_job=20
+    elif m == 'sign_spinner':
+        y_job=30
+    elif m == 'cashier':
+        y_job=40
+    elif m == 'frycook':
+        y_job=50
+    elif m == 'store_clerk':
+        y_job=60
+
         
 async def work_loop():
          while True:
