@@ -567,13 +567,13 @@ async def bank(ctx,*, usero=None):
             #userp = 'unavailable'
     #else:
         #userp = None
-    try: 
+    #try: 
         #if '#' in str(usero):
             #await bank1(ctx,userp)
         #else:
-        await bank3(ctx,usero)
-    except:
-        await bank2(ctx,usero)
+    await bank3(ctx)
+    #except:
+        #await bank2(ctx,usero)
 
 async def bank3(ctx,*, user: discord.Member=None):
             print(user)
