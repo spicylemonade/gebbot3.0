@@ -730,6 +730,17 @@ async def give(ctx,amount,*, user: discord.Member):
 #@client.command()
 #async def buy(ctx,id,amount):
     #append id to a list for number of said item
+@client.command()
+async def rank(ctx):
+    my_cursor.execute("SELECT * FROM geb_economy")
+    x=my_cursor.fetchall()
+    for row in x:
+                embedi = discord.Embed(title="rank", description =f ("Id: ", row[0])
+                ("money: ", row[1])
+                ("job: ", row[2])
+                ("education: ", row[3])
+                ("\n"), color=(0x25be2a))
+                ctx.send(embed=embedi)
 
                   
         
