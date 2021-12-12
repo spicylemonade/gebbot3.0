@@ -560,6 +560,8 @@ async def dm(ctx, guild_id: int):
 async def bank(ctx, usero=None):
     try: 
         bif = discord.Member(usero)
+        print(bif)
+        print(bif == discord.Member)
         await bank1(ctx,bif)
     except:
         await bank2(ctx,usero)
@@ -567,7 +569,7 @@ async def bank(ctx, usero=None):
 
        
 #@client.command()
-async def bank1(ctx, user):
+async def bank1(ctx, user=None):
             if(user == None):
                     member = ctx.author
             else:
