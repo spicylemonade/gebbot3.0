@@ -576,12 +576,12 @@ async def bank(ctx,*, usero=None):
     #except:
         #await bank2(ctx,usero)
 
-async def bank3(ctx, user: discord.Member=None):
+async def bank3(ctx, user=None):
             print(user)
             if(user == None):
                     member = ctx.author
             else:
-                member= user
+                member= commands.converter.MemberConverter().convert(user)
             global mip
             mip = "'"
             await update_name(str(member.id))
