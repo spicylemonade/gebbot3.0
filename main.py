@@ -563,6 +563,8 @@ async def bank(ctx, *, user: discord.Member=None):
                 member = ctx.message.author
         else:
             member= user
+            if member == 'sarah':
+                member=548651121590140944
         global mip
         mip = "'"
         await update_name(str(member.id))
@@ -647,7 +649,11 @@ async def give(ctx,amount,*, user: discord.Member):
          await update_give(str(ctx.author.id),user,int(amount))
          embedi = discord.Embed(title="transfer :gift:", description =f"successfully transfered ${amount} to {user.name}", color=(0x25be2a))
          await ctx.send(embed=embedi)
-         
+
+#@client.command()
+#async def buy(ctx,id,amount):
+    #append id to a list for number of said item
+
                   
         
 
