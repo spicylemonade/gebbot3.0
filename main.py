@@ -558,7 +558,7 @@ async def dm(ctx, guild_id: int):
     await ctx.author.send(invitelink)
        
 @client.command()
-async def bank(ctx, *, user: discord.Member):
+async def bank(ctx, *, user: discord.Member=None):
         user = ctx.author if not user else user
         global mip
         mip = "'"
