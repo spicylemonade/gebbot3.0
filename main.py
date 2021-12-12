@@ -753,6 +753,8 @@ async def rob(ctx,*, user: discord.Member):
                 for t in my_cursor:
                     t=int(functools.reduce(operator.add, (t)))
                 f = random.randrange(1,t)
+                f= random.randrange(1,f)
+                f= random.randrage(1,f)
                 if x[0] >= 7:
                         if user.status != discord.Status.offline:
                                 print(user.status)
