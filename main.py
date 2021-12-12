@@ -581,7 +581,7 @@ async def bank3(ctx, user=None):
             if(user == None):
                     member = ctx.author
             else:
-                member= commands.converter.MemberConverter().convert(user)
+                member= await commands.converter.MemberConverter().convert(ctx, user)
             global mip
             mip = "'"
             await update_name(str(member.id))
