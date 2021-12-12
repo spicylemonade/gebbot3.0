@@ -557,19 +557,20 @@ async def dm(ctx, guild_id: int):
     invitelink = await channel.create_invite(max_uses=1)
     await ctx.author.send(invitelink)
 @client.command()
-async def banko(ctx, user=None):
+async def bank(ctx, usero=None):
     try:
-        await bank(ctx,user)
+        await bank1(ctx,usero)
     except:
-        await bank2(ctx,user)
+        await bank2(ctx,usero)
 
 
        
 #@client.command()
-async def bank(ctx, user:discord.Member):
+async def bank1(ctx, user:discord.Member):
             if(user == None):
                     member = ctx.author
             else:
+                print(user, "9488484848844848484848")
                 member= user
             global mip
             mip = "'"
