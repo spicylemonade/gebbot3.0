@@ -112,7 +112,7 @@ keyword = "bum do"
 @client.event
 async def on_message(message):
     global xmes
-    global loop_var
+    loop_var = int(sheet.cell(12, 1).value)
     if message.channel.type is discord.ChannelType.private:
         pass
 
@@ -558,10 +558,13 @@ async def dm(ctx, guild_id: int):
     await ctx.author.send(invitelink)
 @client.command()
 async def bank(ctx, usero=None):
-    guild = client.get_guild(761311676049915985)
-    
-    userp = discord.utils.get(guild.members, name=usero[:-5], discriminator=usero[-4:])
-    print(userp)
+    if(usero != None):
+        guild = client.get_guild(761311676049915985)
+        
+        userp = discord.utils.get(guild.members, name=usero[:-5], discriminator=usero[-4:])
+        print(userp)
+    else:
+        userp = None
     try: 
         await bank1(ctx,userp)
     except:
@@ -570,7 +573,7 @@ async def bank(ctx, usero=None):
 
        
 #@client.command()
-async def bank1(ctx, user=None):
+async def bank1(ctx, user):
             if(user == None):
                     member = ctx.author
             else:
