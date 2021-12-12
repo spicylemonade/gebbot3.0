@@ -562,11 +562,11 @@ async def bank(ctx,*, usero=None):
     #if(usero != None):
         #guild = client.get_guild(761311676049915985)
         
-        userp = discord.utils.get(guild.members, name=usero[:-5], discriminator=usero[-4:])
+        #userp = discord.utils.get(guild.members, name=usero[:-5], discriminator=usero[-4:])
         #if '#' not in str(usero):
             #userp = 'unavailable'
-    else:
-        userp = None
+    #else:
+        #userp = None
     try: 
         #if '#' in str(usero):
             #await bank1(ctx,userp)
