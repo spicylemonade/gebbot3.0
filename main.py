@@ -735,11 +735,11 @@ async def rank(ctx):
     my_cursor.execute("SELECT * FROM geb_economy")
     x=my_cursor.fetchall()
     for row in x:
-                a= "Id: ", row[0]
-                b="money: ", row[1]
-                c="job: ", row[2]
-                d="education: ", row[3]
-                embedi = discord.Embed(title="rank", description =f"{a}/n{b}/n{c}/n{d}/n", color=(0x25be2a))
+                a= ("Id: ", row[0])
+                b=("money: ", row[1])
+                c=("job: ", row[2])
+                d=("education: ", row[3])
+                embedi = discord.Embed(title="rank", description =f"{a}--{b}--{c}--{d}--", color=(0x25be2a))
                 await ctx.send(embed=embedi)
 
                   
