@@ -558,8 +558,9 @@ async def dm(ctx, guild_id: int):
     await ctx.author.send(invitelink)
 @client.command()
 async def bank(ctx, usero=None):
-    try:
-        await bank1(ctx,usero)
+    try: 
+        bif = discord.Member(usero)
+        await bank1(ctx,bif)
     except:
         await bank2(ctx,usero)
 
