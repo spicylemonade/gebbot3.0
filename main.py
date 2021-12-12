@@ -558,16 +558,16 @@ async def dm(ctx, guild_id: int):
     await ctx.author.send(invitelink)
        
 @client.command()
-async def bank(ctx, *, user: discord.Member=None):
-        user = ctx.author if not user else user
+async def bank(ctx, *, user: discord.Member):
+        member = user or ctx.message.author
         global mip
         mip = "'"
-        await update_name(str(ctx.author.id))
-        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+str(ctx.author.id)+mip}")
+        await update_name(str(member.id))
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+str(member.id)+mip}")
 
         for x in my_cursor:
             x=functools.reduce(operator.add, (x))
-            embedi = discord.Embed(title=f":moneybag: {ctx.author.name} ",description='$'+str(x),color=(0x25be2a))
+            embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
             await ctx.send(embed=embedi)
                   
                 
