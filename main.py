@@ -558,7 +558,7 @@ async def dm(ctx, guild_id: int):
     await ctx.author.send(invitelink)
 @client.command()
 async def bank(ctx, usero=None):
-    bif = discord.Member(usero)
+    bif = discord.Member(name=usero)
     print(bif)
     print(bif == discord.Member)
     try: 
