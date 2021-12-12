@@ -572,6 +572,7 @@ async def bank(ctx,*, usero=None):
             #await bank1(ctx,userp)
         #else:
     await bank3(ctx)
+    await bank3(ctx,usero)
     #except:
         #await bank2(ctx,usero)
 
@@ -579,8 +580,8 @@ async def bank3(ctx,*, user: discord.Member=None):
             print(user)
             if(user == None):
                     member = ctx.author
-                
-            member= user
+            else:
+                member= user
             global mip
             mip = "'"
             await update_name(str(member.id))
