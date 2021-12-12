@@ -580,7 +580,7 @@ async def bank(ctx, user:discord.Member=None):
                 x=functools.reduce(operator.add, (x))
                 embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
                 await ctx.send(embed=embedi)
-@client.command()                
+#@client.command()                
 async def bank2(ctx,member):
     if member == 'sarah':
         global bankg
