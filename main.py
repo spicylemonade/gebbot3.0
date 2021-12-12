@@ -576,7 +576,7 @@ async def bank(ctx,*, usero=None):
     #except:
         #await bank2(ctx,usero)
 
-async def bank3(ctx,*, user: discord.Member=None):
+async def bank3(ctx,*, user: discord.Member):
             print(user)
             if(user == None):
                     member = ctx.author
