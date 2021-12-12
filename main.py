@@ -558,7 +558,7 @@ async def dm(ctx, guild_id: int):
     await ctx.author.send(invitelink)
        
 @client.command()
-async def bank(ctx, user:discord.Member=None or str):
+async def bank(ctx, user:discord.Member and str=None):
         try:
             if(user == None):
                     member = ctx.message.author
