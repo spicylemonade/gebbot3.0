@@ -113,6 +113,7 @@ keyword = "bum do"
 async def on_message(message):
     global xmes
     loop_var = int(sheet.cell(12, 1).value)
+    svar = int(sheet.cell(9, 1).value)
     if message.channel.type is discord.ChannelType.private:
         pass
 
@@ -562,7 +563,8 @@ async def bank(ctx, usero=None):
         guild = client.get_guild(761311676049915985)
         
         userp = discord.utils.get(guild.members, name=usero[:-5], discriminator=usero[-4:])
-        print(userp)
+        if '#' not in str(usero):
+            userp = 'unavailable'
     else:
         userp = None
     try: 
