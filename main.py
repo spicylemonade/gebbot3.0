@@ -567,7 +567,7 @@ async def bank(ctx, usero=None):
 
        
 #@client.command()
-async def bank1(ctx, user:discord.Member):
+async def bank1(ctx, user):
             if(user == None):
                     member = ctx.author
             else:
