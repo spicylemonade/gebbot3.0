@@ -588,50 +588,50 @@ async def bank1(ctx, user):
 
             for x in my_cursor:
                 x=functools.reduce(operator.add, (x))
-                embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
-                await ctx.send(embed=embedi)
+            embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
+            await ctx.send(embed=embedi)
 #@client.command()                
 async def bank2(ctx,member):
     if member == 'sarah':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'548651121590140944'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(548651121590140944)
+        xname = client.get_user(548651121590140944)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
     elif member == 'ike':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'403315596856524809'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(403315596856524809)
+        xname = client.get_user(403315596856524809)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
     elif member == 'tunde':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'347426152018608128'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(347426152018608128)
+        xname = client.get_user(347426152018608128)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
     elif member == 'tristan':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'380705348073422849'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(380705348073422849)
+        xname = client.get_user(380705348073422849)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
     elif member == 'mike':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'522485825439531032'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(522485825439531032)
+        xname = client.get_user(522485825439531032)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
     elif member == 'geby':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'471334973379706900'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(471334973379706900)
+        xname = client.get_user(471334973379706900)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
     
