@@ -90,7 +90,7 @@ async def on_ready():
             weday = date(int(year), int(month), int(day))
             datey1 = weday.strftime("%A")
             if svar >= 7:
-                sheet.sheet.update_cell(12, 1, loop_var + 1)
+                sheet.update_cell(12, 1, loop_var + 1)
                 # sheet.sheet.update_cell(1, 13, loop2_var+2)
                 sheet.update_cell(9, 1, 0)
                 svar = int(sheet.cell(9, 1).value)
@@ -140,9 +140,11 @@ async def on_message(message):
     await client.process_commands(message)
     if message.content.startswith('g!bank'):
         try:
-            await bank(message, message.content[4:])
+            print(message.content[7:])
+            await bank(message, message.content[7:])
         except:
-            await bank2(message.content[4:])
+            print(message.content[7:])
+            await bank2(message.content[7:])
             embedi = discord.Embed(title=f":moneybag: {message.content[4:]} ",description='$'+str(bankg),color=(0x25be2a))
             await message.channel.send(embed=embedi)
 
