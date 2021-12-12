@@ -592,42 +592,42 @@ async def bank1(ctx, user):
                 await ctx.send(embed=embedi)
 #@client.command()                
 async def bank2(ctx,member):
-    if member == 'sarah'or 'Sarah':
+    if member == 'sarah':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'548651121590140944'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(403315596856524809)
+            xname = client.get_user(548651121590140944)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
-    if member == 'ike' or 'Ike':
+    elif member == 'ike':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'403315596856524809'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
             xname = client.get_user(403315596856524809)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
-    if member == 'tunde' or 'Tunde':
+    elif member == 'tunde':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'347426152018608128'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
             xname = client.get_user(347426152018608128)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
-    if member == 'tristan' or 'Tristan':
+    elif member == 'tristan':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'380705348073422849'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
             xname = client.get_user(380705348073422849)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
-    if member == 'mike' or 'Mike':
-        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'380705348073422849'}")
+    elif member == 'mike':
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'522485825439531032'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-            xname = client.get_user(380705348073422849)
+            xname = client.get_user(522485825439531032)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
-    if member == 'Geby' or 'geby':
+    elif member == 'geby':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'471334973379706900'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
