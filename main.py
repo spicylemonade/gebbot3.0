@@ -92,7 +92,7 @@ async def on_ready():
             if svar >= 7:
                 sheet.sheet.update_cell(12, 1, loop_var + 1)
                 # sheet.sheet.update_cell(1, 13, loop2_var+2)
-                sheet.sheet.update_cell(9, 1, 0)
+                sheet.update_cell(9, 1, 0)
                 svar = int(sheet.cell(9, 1).value)
 
             sheet.update_cell(9, 1, svar + 1)
@@ -112,7 +112,6 @@ keyword = "bum do"
 @client.event
 async def on_message(message):
     global xmes
-    global loop_var
     if message.channel.type is discord.ChannelType.private:
         pass
 
@@ -139,6 +138,13 @@ async def on_message(message):
             await message.channel.send(":thumbdown:")
             await message.add_reaction('👎')
     await client.process_commands(message)
+    if message.content.startswith('g!bank'):
+        try:
+            await bank(message, message.content[4:])
+        except:
+            await bank2(message.content[4:])
+            embedi = discord.Embed(title=f":moneybag: {message.content[4:]} ",description='$'+str(bankg),color=(0x25be2a))
+            await message.channel.send(embed=embedi)
 
 
 '''@client.command()
@@ -557,11 +563,10 @@ async def dm(ctx, guild_id: int):
     invitelink = await channel.create_invite(max_uses=1)
     await ctx.author.send(invitelink)
        
-@client.command()
-async def bank(ctx, user:discord.Member and str=None):
-        try:
+#@client.command()
+async def bank(ctx, user:discord.Member=None):
             if(user == None):
-                    member = ctx.message.author
+                    member = ctx.author
             else:
                 member= user
             global mip
@@ -573,11 +578,6 @@ async def bank(ctx, user:discord.Member and str=None):
                 x=functools.reduce(operator.add, (x))
                 embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
                 await ctx.send(embed=embedi)
-        except:
-            print(str(user))
-            await bank2(str(user))
-            embedi = discord.Embed(title=f":moneybag: {str(user)} ",description='$'+str(bankg),color=(0x25be2a))
-            await ctx.send(embed=embedi)
 async def bank2(member):
     if member == 'sarah':
         global bankg
