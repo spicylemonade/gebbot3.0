@@ -735,17 +735,24 @@ async def rank(ctx):
     my_cursor.execute("SELECT * FROM geb_economy")
     x=my_cursor.fetchall()
     for row in x:
-                a= ("Id: ", row[0])
-                b=("money: ", row[1])
-                c=("job: ", row[2])
-                d=("education: ", row[3])
-                e='/n'
+                a = "Id: ", row[0]+'             '
+                b = "money: ", int(row[1])
+                b= str(b)+'             '
+                c = " job: ", row[2]+'             '
+                d = "education: ", row[3],'             '
                 a1 = ''.join(a)
+                #b= str(b)
+                #b1= b.replace("Decimal", "")
+                #b1= b1.replace("("," ")
+                #b1 = b1.replace(")", " ")
                 b1 = ''.join(b)
+                #b1 = b.translate(None, 'decimal')
                 c1 = ''.join(c)
-                d1 = ''.join(d)
-                e1 = ''.join(e)
-                embedi = discord.Embed(title="rank", description =f"{a1}--{b1}--{c1}--{d1}--{e1}", color=(0x25be2a))
+                try:
+                    d1 = ''.join(d)
+                except:
+                    d1= str(d)
+                embedi = discord.Embed(title="rank", description =f"{a1}{b1}{c1}{d1}", color=(0x25be2a))
                 await ctx.send(embed=embedi)
 
                   
