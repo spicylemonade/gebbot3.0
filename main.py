@@ -117,7 +117,6 @@ async def on_message(message):
         pass
 
     elif message.guild.id == 761311676049915985:
-        loop_var = int(sheet.cell(12, 1).value)
         xmes += 1
         sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
     username = message.author.name
@@ -571,7 +570,7 @@ async def bank(ctx, usero=None):
 
        
 #@client.command()
-async def bank1(ctx, user: discord.Member=None):
+async def bank1(ctx, user=None):
             if(user == None):
                     member = ctx.author
             else:
