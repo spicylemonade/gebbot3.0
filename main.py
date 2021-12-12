@@ -116,6 +116,7 @@ async def on_message(message):
         pass
 
     elif message.guild.id == 761311676049915985:
+        loop_var = int(sheet.cell(12, 1).value)
         xmes += 1
         sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
     username = message.author.name
@@ -139,13 +140,14 @@ async def on_message(message):
             await message.add_reaction('👎')
     await client.process_commands(message)
     if message.content.startswith('g!bank'):
+        m_con= message.content[7:]
         try:
-            print(message.content[7:])
-            await bank(message, message.content[7:])
+            print(m_con)
+            await bank(message, discord.Member(m_con))
         except:
-            print(message.content[7:])
-            await bank2(message.content[7:])
-            embedi = discord.Embed(title=f":moneybag: {message.content[4:]} ",description='$'+str(bankg),color=(0x25be2a))
+            print(m_con)
+            await bank2(m_con)
+            embedi = discord.Embed(title=f":moneybag: {m_con} ",description='$'+str(bankg),color=(0x25be2a))
             await message.channel.send(embed=embedi)
 
 
