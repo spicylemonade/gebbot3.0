@@ -572,9 +572,10 @@ async def bank(ctx,*, usero=None):
             #await bank1(ctx,userp)
         #else:
     #await bank3(ctx)
-    await bank3(ctx,usero)
-    #except:
-        #await bank2(ctx,usero)
+    try:
+        await bank3(ctx,usero)
+    except:
+        await bank2(ctx,usero)
 
 async def bank3(ctx, user=None):
             print(user)
