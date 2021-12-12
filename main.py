@@ -573,19 +573,6 @@ async def bank(ctx, *, user: discord.Member=None):
             embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
             await ctx.send(embed=embedi)
                   
-                
-         
-        
-@client.command()
-async def mbank(ctx,*,user: discord.Member):
-        member = str(user.id)
-        await update_name(member)
-        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+member+mip}")
-
-        for x in my_cursor:
-            x=functools.reduce(operator.add, (x))
-            embedi = discord.Embed(title=f":moneybag: {user.name} ",description='$'+str(x),color=(0x25be2a))
-            await ctx.send(embed=embedi)
         
 @client.command()
 async def work(ctx):
