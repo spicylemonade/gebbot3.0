@@ -559,23 +559,33 @@ async def dm(ctx, guild_id: int):
        
 @client.command()
 async def bank(ctx, *, user: discord.Member=None):
-        if(user == None):
-                member = ctx.message.author
-        else:
-            member= user
-            if (user == 'tunde'):
-                member = 'saico_dmg#1405'
-        global mip
-        mip = "'"
-        await update_name(str(member.id))
-        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+str(member.id)+mip}")
+        try:
+            if(user == None):
+                    member = ctx.message.author
+            else:
+                member= user
+            global mip
+            mip = "'"
+            await update_name(str(member.id))
+            my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip+str(member.id)+mip}")
 
-        for x in my_cursor:
-            x=functools.reduce(operator.add, (x))
-            embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
+            for x in my_cursor:
+                x=functools.reduce(operator.add, (x))
+                embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
+                await ctx.send(embed=embedi)
+        except:
+            print(str(user))
+            await bank2(str(user))
+            g=bank2(str(user))
+            embedi = discord.Embed(title=f":moneybag: {str(user)} ",description='$'+str(g),color=(0x25be2a))
             await ctx.send(embed=embedi)
-                  
-        
+async def bank2(member):
+    if member == 'sarah':
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'548651121590140944'}")
+        for g in my_cursor:
+            g=functools.reduce(operator.add, (g))
+            return g
+
 @client.command()
 async def work(ctx):
         mip = "'"
