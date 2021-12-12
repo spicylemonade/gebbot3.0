@@ -671,32 +671,38 @@ async def give(ctx,amount,*, user: discord.Member):
        
 @client.command()
 async def rob(ctx,*, user: discord.Member):
-        my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
-        x = my_cursor.fetchone()
-        #x is how much money you have
-        if x[0] >= 20:
-            embedi = discord.Embed(description="you can no longer rob for today")
+        try:
+            my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+            x = my_cursor.fetchone()
+            #x is how much money you have
+            if x[0] >= 20:
+                embedi = discord.Embed(description="you can no longer rob for today")
+                await ctx.send(embed=embedi)
+            else:
+                #my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
+                member = str(user.id)
+                my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + member + mip}")
+                for t in my_cursor:
+                    t=int(functools.reduce(operator.add, (t)))
+                f = random.randrange(1,t)
+                if x[0] >= 7:
+                        if user.status != discord.Status.offline:
+                                print(user.status)
+                                f = random.randrange(1,f)
+                                f = random.randrange(1,f)
+                                f= int(f*.5)
+                                #lowers the rate if the robber is offline
+                                
+                f = int(f*0.5)
+                await update_rob(str(ctx.author.id),user,f)
+                embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
+                    
+                await ctx.send(embed=embedi)
+        except:
+            embedi = discord.Embed(title="Robbed :interrobang:",description="congrants you robbed a broke person",color=(0x25be2a))
+                    
             await ctx.send(embed=embedi)
-        else:
-            #my_cursor.execute(f"UPDATE geb_economy SET rob_var=rob_var+1 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
-            member = str(user.id)
-            my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + member + mip}")
-            for t in my_cursor:
-                t=int(functools.reduce(operator.add, (t)))
-            f = random.randrange(1,t)
-            if x[0] >= 7:
-                     if user.status != discord.Status.offline:
-                             print(user.status)
-                             f = random.randrange(1,f)
-                             f = random.randrange(1,f)
-                             f= int(f*.5)
-                             #lowers the rate if the robber is offline
-                             
-            f = int(f*0.5)
-            await update_rob(str(ctx.author.id),user,f)
-            embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
-                
-            await ctx.send(embed=embedi)
+
          
        
 @client.command()
