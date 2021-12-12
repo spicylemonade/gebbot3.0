@@ -627,7 +627,7 @@ async def bank2(ctx,member):
             xname = client.fetch_user(380705348073422849)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
-     elif member == 'Geby' or 'geby':
+    elif member == 'Geby' or 'geby':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'471334973379706900'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
