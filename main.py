@@ -139,16 +139,6 @@ async def on_message(message):
             await message.channel.send(":thumbdown:")
             await message.add_reaction('👎')
     await client.process_commands(message)
-    if message.content.startswith('g!bank'):
-        m_con= message.content[7:]
-        try:
-            print(m_con)
-            await bank(message, discord.Member(m_con))
-        except:
-            print(m_con)
-            await bank2(m_con)
-            embedi = discord.Embed(title=f":moneybag: {m_con} ",description='$'+str(bankg),color=(0x25be2a))
-            await message.channel.send(embed=embedi)
 
 
 '''@client.command()
@@ -566,6 +556,14 @@ async def dm(ctx, guild_id: int):
     channel = guild.channels[0]
     invitelink = await channel.create_invite(max_uses=1)
     await ctx.author.send(invitelink)
+@client.command()
+async def banko(ctx, user=None):
+    try:
+        await bank(ctx,user)
+    except:
+        await bank2(ctx,user)
+
+
        
 #@client.command()
 async def bank(ctx, user:discord.Member=None):
@@ -582,12 +580,15 @@ async def bank(ctx, user:discord.Member=None):
                 x=functools.reduce(operator.add, (x))
                 embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
                 await ctx.send(embed=embedi)
-async def bank2(member):
+@client.command()                
+async def bank2(ctx,member):
     if member == 'sarah':
         global bankg
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'548651121590140944'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
+        embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(bankg),color=(0x25be2a))
+        await ctx.send(embed=embedi)
 
 @client.command()
 async def work(ctx):
