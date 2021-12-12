@@ -566,7 +566,7 @@ async def banko(ctx, user=None):
 
        
 #@client.command()
-async def bank(ctx, user:discord.Member=None):
+async def bank(ctx, user:discord.Member):
             if(user == None):
                     member = ctx.author
             else:
@@ -587,7 +587,7 @@ async def bank2(ctx,member):
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'548651121590140944'}")
         for bankg in my_cursor:
             bankg=functools.reduce(operator.add, (bankg))
-        embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(bankg),color=(0x25be2a))
+        embedi = discord.Embed(title=f":moneybag: {member} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
 
 @client.command()
