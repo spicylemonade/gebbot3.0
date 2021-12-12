@@ -558,9 +558,8 @@ async def dm(ctx, guild_id: int):
     await ctx.author.send(invitelink)
        
 @client.command()
-async def bank(ctx, user=None):
+async def bank(ctx, user:str or discord.Member=None):
         try:
-            user = discord.Member
             if(user == None):
                     member = ctx.message.author
             else:
@@ -577,15 +576,14 @@ async def bank(ctx, user=None):
         except:
             print(str(user))
             await bank2(str(user))
-            g=bank2(str(user))
-            embedi = discord.Embed(title=f":moneybag: {str(user)} ",description='$'+str(g),color=(0x25be2a))
+            embedi = discord.Embed(title=f":moneybag: {str(user)} ",description='$'+str(bankg),color=(0x25be2a))
             await ctx.send(embed=embedi)
 async def bank2(member):
     if member == 'sarah':
+        global bankg
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'548651121590140944'}")
-        for g in my_cursor:
-            g=functools.reduce(operator.add, (g))
-            return g
+        for bankg in my_cursor:
+            bankg=functools.reduce(operator.add, (bankg))
 
 @client.command()
 async def work(ctx):
