@@ -563,7 +563,8 @@ async def bank(ctx, *, user: discord.Member=None):
                 member = ctx.message.author
         else:
             member= user
-            print(member)
+            if (user == 'tunde'):
+                member = 'saico_dmg#1405'
         global mip
         mip = "'"
         await update_name(str(member.id))
