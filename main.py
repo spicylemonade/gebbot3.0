@@ -739,7 +739,13 @@ async def rank(ctx):
                 b=("money: ", row[1])
                 c=("job: ", row[2])
                 d=("education: ", row[3])
-                embedi = discord.Embed(title="rank", description =f"{a}--{b}--{c}--{d}--", color=(0x25be2a))
+                e='/n'
+                a1 = ''.join(a)
+                b1 = ''.join(b)
+                c1 = ''.join(c)
+                d1 = ''.join(d)
+                e1 = ''.join(e)
+                embedi = discord.Embed(title="rank", description =f"{a1}--{b1}--{c1}--{d1}--{e1}", color=(0x25be2a))
                 await ctx.send(embed=embedi)
 
                   
