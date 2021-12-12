@@ -570,7 +570,7 @@ async def bank(ctx,*, usero=None):
     try: 
         await bank1(ctx,userp)
     except:
-        await bank2(ctx,usero,my_use)
+        await bank2(ctx,usero)
 
 
        
