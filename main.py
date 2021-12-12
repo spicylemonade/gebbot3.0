@@ -568,14 +568,18 @@ async def bank(ctx,*, usero=None):
     else:
         userp = None
     try: 
-        if '#' not in str(usero):
-            await bank3(ctx,usero)
-        else:
-            await bank1(ctx,userp)
+        #if '#' in str(usero):
+            #await bank1(ctx,userp)
+        #else:
+        await bank3(ctx,usero)
     except:
         await bank2(ctx,usero)
 
 async def bank3(ctx,*, user: discord.Member=None):
+            print(user)
+            if(user == None):
+                    member = ctx.author
+                
             member= user
             global mip
             mip = "'"
