@@ -734,6 +734,7 @@ async def give(ctx,amount,*, user: discord.Member):
 async def rank(ctx):
     my_cursor.execute("SELECT * FROM geb_economy")
     x=my_cursor.fetchall()
+    embedi = discord.Embed(title=rank, color=(0x25be2a))
     for row in x:
                 a = row[0]
                 b = "money: ", int(row[1])
@@ -753,17 +754,10 @@ async def rank(ctx):
                     d1 = str(d)+"                              "
                 except:
                     d1= str(d)+"                              "
-                embedi = discord.Embed(title=member.name, color=(0x25be2a))
-                embedi.add_field(name="money",
-                     value=b1,
+                embedi.add_field(name=member.name,
+                     value=b1+c1+d1,
                      inline=True)
-                embedi.add_field(name="job",
-                     value=c1,
-                     inline=True)
-                embedi.add_field(name="education",
-                     value=d1,
-                     inline=True)
-                await ctx.send(embed=embedi)
+    await ctx.send(embed=embedi)
 
                   
     
