@@ -735,12 +735,13 @@ async def rank(ctx):
     my_cursor.execute("SELECT * FROM geb_economy")
     x=my_cursor.fetchall()
     for row in x:
-                a = "Id: ", row[0]+'             '
+                a = row[0]
                 b = "money: ", int(row[1])
-                b= str(b)+'             '
-                c = " job: ", row[2]+'             '
-                d = "education: ", row[3],'             '
+                b= str(b)
+                c = " job: ", row[2]
+                d = "education: ", row[3],
                 a1 = ''.join(a)
+                member= await commands.converter.MemberConverter().convert(ctx, a1)
                 #b= str(b)
                 #b1= b.replace("Decimal", "")
                 #b1= b1.replace("("," ")
@@ -752,7 +753,7 @@ async def rank(ctx):
                     d1 = ''.join(d)
                 except:
                     d1= str(d)
-                embedi = discord.Embed(title="rank", description =f"{a1}{b1}{c1}{d1}", color=(0x25be2a))
+                embedi = discord.Embed(title=member.name, description =f"{b1}                    {c1}                    {d1}", color=(0x25be2a))
                 await ctx.send(embed=embedi)
 
                   
