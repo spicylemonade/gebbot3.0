@@ -112,14 +112,17 @@ keyword = "bum do"
 @client.event
 async def on_message(message):
     global xmes
-    loop_var = int(sheet.cell(12, 1).value)
-    svar = int(sheet.cell(9, 1).value)
-    if message.channel.type is discord.ChannelType.private:
-        pass
+    try:
+        loop_var = int(sheet.cell(12, 1).value)
+        svar = int(sheet.cell(9, 1).value)
+        if message.channel.type is discord.ChannelType.private:
+            pass
 
-    elif message.guild.id == 761311676049915985:
-        xmes += 1
-        sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
+        elif message.guild.id == 761311676049915985:
+            xmes += 1
+            sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
+    except:
+        pass
     username = message.author.name
     embed = discord.Embed(title=":game_die:",
                           description=str(random.randint(1, 100)),
