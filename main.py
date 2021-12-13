@@ -746,13 +746,13 @@ async def rank(ctx):
                 #b1= b.replace("Decimal", "")
                 #b1= b1.replace("("," ")
                 #b1 = b1.replace(")", " ")
-                b1 = ''.join(b)
+                b1 = str(b)+"                              "
                 #b1 = b.translate(None, 'decimal')
-                c1 = ''.join(c)
+                c1 = str(c)+"                              "
                 try:
-                    d1 = ''.join(d)
+                    d1 = str(d)+"                              "
                 except:
-                    d1= str(d)
+                    d1= str(d)+"                              "
                 embedi = discord.Embed(title=member.name, description =f"{b1}                    {c1}                    {d1}", color=(0x25be2a))
                 await ctx.send(embed=embedi)
 
