@@ -753,7 +753,16 @@ async def rank(ctx):
                     d1 = str(d)+"                              "
                 except:
                     d1= str(d)+"                              "
-                embedi = discord.Embed(title=member.name, description =f"{b1}                    {c1}                    {d1}", color=(0x25be2a))
+                embedi = discord.Embed(title=member.name, color=(0x25be2a))
+                embedi.add_field(name="money",
+                     value=b1,
+                     inline=True)
+                embedi.add_field(name="job",
+                     value=c1,
+                     inline=True)
+                embedi.add_field(name="education",
+                     value=d1,
+                     inline=True)
                 await ctx.send(embed=embedi)
 
                   
