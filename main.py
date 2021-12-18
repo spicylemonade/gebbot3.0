@@ -788,8 +788,8 @@ async def rob(ctx,*, user: discord.Member):
                 if x[0] >= 7:
                         if user.status != discord.Status.offline:
                                 print(user.status)
-                                f = random.randrange(1,f)
-                                f = random.randrange(1,f)
+                                f = random.randint(1,f)
+                                f = random.randint(1,f)
                                 f= int(f*.5)
                                 #lowers the rate if the robber is offline
                                 
