@@ -782,7 +782,6 @@ async def rob(ctx,*, user: discord.Member):
                 for t in my_cursor:
                     t=int(functools.reduce(operator.add, (t)))
                 f = random.randint(1,t)
-                print(f)
                 f= random.randint(1,f)
                 f= random.randint(1,f)
                 if x[0] >= 7:
