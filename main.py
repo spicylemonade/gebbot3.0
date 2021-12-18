@@ -949,9 +949,9 @@ async def work_loop():
          while True:
                   new_now = datetime.now(tz)
                   timey = new_now.strftime("%H")
-                  if timey == '00' or '01':
+                  if timey == '00':
                            my_cursor.execute(f"UPDATE geb_economy SET rob_var=0")
-                           my_cursor.execute(f"UPDATE geb_economy SET qork_var=0")
+                           my_cursor.execute(f"UPDATE geb_economy SET work_var=0")
                            my_cursor.execute(f"UPDATE geb_economy SET edu_var=0")
                            mydb.commit()
                            
