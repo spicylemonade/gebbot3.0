@@ -781,9 +781,10 @@ async def rob(ctx,*, user: discord.Member):
                 my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + member + mip}")
                 for t in my_cursor:
                     t=int(functools.reduce(operator.add, (t)))
-                f = random.randrange(1,t)
-                f= random.randrange(1,f)
-                f= random.randrage(1,f)
+                f = random.randint(1,t)
+                print(f)
+                f= random.randint(1,f)
+                f= random.randint(1,f)
                 if x[0] >= 7:
                         if user.status != discord.Status.offline:
                                 print(user.status)
