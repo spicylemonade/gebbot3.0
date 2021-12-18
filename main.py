@@ -768,6 +768,7 @@ async def rank(ctx):
        
 @client.command()
 async def rob(ctx,*, user: discord.Member):
+    try:
             my_cursor.execute(f"SELECT rob_var FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
             x = my_cursor.fetchone()
             #x is how much money you have
@@ -797,10 +798,10 @@ async def rob(ctx,*, user: discord.Member):
                 embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
                     
                 await ctx.send(embed=embedi)
-        #except:
-            #embedi = discord.Embed(title="Robbed :interrobang:",description="congrants you robbed a broke person",color=(0x25be2a))
+    except:
+            embedi = discord.Embed(title="Robbed :interrobang:",description="congrants you robbed a broke person",color=(0x25be2a))
                     
-           # await ctx.send(embed=embedi)
+            await ctx.send(embed=embedi)
 
          
        
