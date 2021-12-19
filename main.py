@@ -950,10 +950,10 @@ async def work_loop():
          while True:
                   new_now = datetime.now(tz)
                   timey = new_now.strftime("%H")
-                  if timey == '00':
-                           my_cursor.execute(f"UPDATE geb_economy SET rob_var=0")
-                           my_cursor.execute(f"UPDATE geb_economy SET work_var=0")
-                           my_cursor.execute(f"UPDATE geb_economy SET edu_var=0")
+                  if timey == "02":
+                           my_cursor.execute("UPDATE geb_economy SET rob_var=5")
+                           my_cursor.execute("UPDATE geb_economy SET work_var=5")
+                           my_cursor.execute("UPDATE geb_economy SET edu_var=5")
                            mydb.commit()
                            
                   await asyncio.sleep(2600)
