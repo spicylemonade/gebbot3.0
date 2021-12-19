@@ -44,15 +44,34 @@ import functools
 import operator
 mip = "'"
 #this is for edditng values and shwing them in mysql
-@client.event
-async def on_connect():
-         print('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
-         await m_loop()
-         await work_loop()
+async def work_loop():
+         while True:
+                  new_now = datetime.now(tz)
+                  timey = new_now.strftime("%H")
+                  print('hey')
+                  if timey == "02":
+                           print('hey')
+                           my_cursor.execute("UPDATE geb_economy SET rob_var=5")
+                           my_cursor.execute("UPDATE geb_economy SET work_var=5")
+                           my_cursor.execute("UPDATE geb_economy SET edu_var=5")
+                           mydb.commit()
+                           
+                  await asyncio.sleep(2600)
+                  
+     
+async def m_loop():
+         while True:
+                  global mydb
+                  global my_cursor
+                  mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
+                  my_cursor = mydb.cursor(buffered=True)
+                  await asyncio.sleep(260)
 @client.event
 async def on_ready():
     global xmes
     print("bot ready")
+    await m_loop()
+    await work_loop()
     while True:
         global svar
         global loop_var
@@ -945,30 +964,6 @@ async def edu_list(m):
     elif m == 'bussiness_major':
         y_edu=-400
 #all of the  majors(they subtract money)
-
-        
-async def work_loop():
-         while True:
-                  new_now = datetime.now(tz)
-                  timey = new_now.strftime("%H")
-                  print('hey')
-                  if timey == "02":
-                           print('hey')
-                           my_cursor.execute("UPDATE geb_economy SET rob_var=5")
-                           my_cursor.execute("UPDATE geb_economy SET work_var=5")
-                           my_cursor.execute("UPDATE geb_economy SET edu_var=5")
-                           mydb.commit()
-                           
-                  await asyncio.sleep(2600)
-                  
-     
-async def m_loop():
-         while True:
-                  global mydb
-                  global my_cursor
-                  mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
-                  my_cursor = mydb.cursor(buffered=True)
-                  await asyncio.sleep(260)
                 
 
 
