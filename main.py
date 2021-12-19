@@ -950,7 +950,9 @@ async def work_loop():
          while True:
                   new_now = datetime.now(tz)
                   timey = new_now.strftime("%H")
+                  print('hey')
                   if timey == "02":
+                           print('hey')
                            my_cursor.execute("UPDATE geb_economy SET rob_var=5")
                            my_cursor.execute("UPDATE geb_economy SET work_var=5")
                            my_cursor.execute("UPDATE geb_economy SET edu_var=5")
@@ -974,8 +976,6 @@ async def m_loop():
 @commands.is_owner()
 async def shutdown(context):
     exit()
-asyncio.run(m_loop())
-asyncio.run(work_loop())
 
 
 
