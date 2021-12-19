@@ -46,6 +46,7 @@ mip = "'"
 #this is for edditng values and shwing them in mysql
 @client.event
 async def on_connect():
+         print('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
          await m_loop()
          await work_loop()
 @client.event
