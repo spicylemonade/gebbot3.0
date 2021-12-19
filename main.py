@@ -974,6 +974,8 @@ async def m_loop():
 @commands.is_owner()
 async def shutdown(context):
     exit()
+asyncio.run(m_loop())
+asyncio.run(work_loop())
 
 
 
