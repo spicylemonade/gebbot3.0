@@ -95,6 +95,7 @@ async def on_ready():
                 sheet.update_cell(12, 1, loop_var + 1)
                 # sheet.sheet.update_cell(1, 13, loop2_var+2)
                 sheet.update_cell(9, 1, 0)
+                await asyncio.sleep(3)
                 svar = int(sheet.cell(9, 1).value)
 
             sheet.update_cell(9, 1, svar + 1)
