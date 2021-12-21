@@ -51,7 +51,7 @@ async def on_ready():
     print("bot ready")
     await m_loop()
     while True:
-        global svar
+        #global svar
         global loop_var
         global loop2_var
         loop_var = int(sheet.cell(12, 1).value)
@@ -87,10 +87,6 @@ async def on_ready():
             day, month, year = (int(i) for i in datey.split(' '))
             weday = date(int(year), int(month), int(day))
             datey1 = weday.strftime("%A")
-            my_cursor.execute("UPDATE geb_economy SET rob_var=5")
-            my_cursor.execute("UPDATE geb_economy SET work_var=5")
-            my_cursor.execute("UPDATE geb_economy SET edu_var=5")
-            mydb.commit()
             if svar >= 7:
                 sheet.update_cell(12, 1, loop_var + 1)
                 # sheet.sheet.update_cell(1, 13, loop2_var+2)
@@ -101,6 +97,10 @@ async def on_ready():
             sheet.update_cell(9, 1, svar + 1)
             svar = int(sheet.cell(9, 1).value)
             sheet.update_cell(svar, loop2_var, datey1)
+            my_cursor.execute("UPDATE geb_economy SET rob_var=5")
+            my_cursor.execute("UPDATE geb_economy SET work_var=5")
+            my_cursor.execute("UPDATE geb_economy SET edu_var=5")
+            mydb.commit()
             await asyncio.sleep(3600)
 
 
