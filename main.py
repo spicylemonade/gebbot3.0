@@ -145,6 +145,8 @@ async def on_message(message):
         if message.content.startswith("ratio"):
             await message.channel.send(":thumbdown:")
             await message.add_reaction('👎')
+    if 'dnd' in message.content:
+        await message.channel.send('ew nerd')
     await client.process_commands(message)
 
 
