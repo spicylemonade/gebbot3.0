@@ -145,8 +145,20 @@ async def on_message(message):
         if message.content.startswith("ratio"):
             await message.channel.send(":thumbdown:")
             await message.add_reaction('👎')
-    if 'dnd' in message.content:
-        await message.channel.send('ew nerd')
+    dnd=['dnd','d&d','DND','D&D','dungeons and dragons','Dungeons and Dragons','d and d', 'dungeons & dragons']
+    dndn=['not','hate','dispize','dont','wont']
+    dndl=[]
+    for i in dnd:
+        if i in message.content:
+            dndl.append('true')
+    for i in dndn:
+        if i in message.content:
+            dndl.append('false')
+    if 'true' in dndl and 'false' not in dndl:
+        await message.send('ew nerd')
+    elif 'false' in dndl:
+        await message.send('valid')
+
     await client.process_commands(message)
 
 
