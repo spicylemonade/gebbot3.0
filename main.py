@@ -145,7 +145,7 @@ async def on_message(message):
         if message.content.startswith("ratio"):
             await message.channel.send(":thumbdown:")
             await message.add_reaction('👎')
-    dnd=['dnd','d&d','DND','D&D','dungeons and dragons','Dungeons and Dragons','d and d', 'dungeons & dragons']
+    dnd=['dnd','d&d','DND','D&D','dungeons and dragons','Dungeons and Dragons','d and d', 'dungeons & dragons', 'Dnd','dnD','5e','dungeon and dragon','Dungeons and Dragons','Dungeons and dragons','dungeons n dragons','Dungeons n Dragons','Dungeons n dragons']
     dndn=['not','hate','dispize','dont','wont']
     dndl=[]
     for i in dnd:
