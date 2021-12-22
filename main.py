@@ -146,7 +146,7 @@ async def on_message(message):
             await message.channel.send(":thumbdown:")
             await message.add_reaction('👎')
     dnd=['dnd','d&d','DND','D&D','dungeons and dragons','Dungeons and Dragons','d and d', 'dungeons & dragons', 'Dnd','dnD','5e','dungeon and dragon','Dungeons and Dragons','Dungeons and dragons','dungeons n dragons','Dungeons n Dragons','Dungeons n dragons']
-    dndn=['not','hate','dispize','dont','wont']
+    dndn=['not','hate','dispise','dont','wont','dislike','do not','never']
     dndl=[]
     for i in dnd:
         if i in message.content:
