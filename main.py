@@ -159,10 +159,15 @@ async def on_message(message):
     elif 'false' in dndl and 'true' in dndl:
         if 'dont hate' in message.content:
             await message.channel.send('cringe')
+            c='cringe'
+        else:
+            c='valid'
         if 'geby' in message.content:
             await message.channel.send('cringe')
-        elif ('dont hate' not in message.content) or ('dont no' not in message.content) or ('dont dislike' not in message.content) or ('geby' not in message.content):
-            await message.channel.send('valid')
+            c='cinge'
+        else:
+            c='valid'
+        await message.channel.send(c)
 
     await client.process_commands(message)
 
