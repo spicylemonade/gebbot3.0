@@ -161,7 +161,7 @@ async def on_message(message):
             await message.channel.send('cringe')
         if 'geby' in message.content:
             await message.channel.send('cringe')
-        elif 'dont hate' not in message.content or 'dont no' not in message.content or 'dont dislike' not in message.content or 'geby' not in message.content and:
+        elif ('dont hate' not in message.content) or ('dont no' not in message.content) or ('dont dislike' not in message.content) or ('geby' not in message.content):
             await message.channel.send('valid')
 
     await client.process_commands(message)
