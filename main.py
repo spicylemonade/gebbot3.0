@@ -49,11 +49,11 @@ mip = "'"
 async def on_ready():
     global xmes
     print("bot ready")
+    global svar
+    global loop_var
+    global loop2_var
     await m_loop()
     while True:
-        global svar
-        global loop_var
-        global loop2_var
         loop_var = int(sheet.cell(12, 1).value)
         loop2_var = int(sheet.cell(13, 1).value)
         svar = int(sheet.cell(9, 1).value)
