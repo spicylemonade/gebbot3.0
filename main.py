@@ -51,7 +51,7 @@ async def on_ready():
     print("bot ready")
     await m_loop()
     while True:
-        #global svar
+        global svar
         global loop_var
         global loop2_var
         loop_var = int(sheet.cell(12, 1).value)
@@ -114,7 +114,6 @@ keyword = "bum do"
 
 @client.event
 async def on_message(message):
-    global xmes
     try:
         loop_var = int(sheet.cell(12, 1).value)
         svar = int(sheet.cell(9, 1).value)
@@ -122,7 +121,6 @@ async def on_message(message):
             pass
 
         elif message.guild.id == 761311676049915985:
-            xmes += 1
             sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
     except:
         pass
