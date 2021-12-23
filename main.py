@@ -52,12 +52,16 @@ async def on_ready():
     global svar
     global loop_var
     global loop2_var
-    await m_loop()
     while True:
         loop_var = int(sheet.cell(12, 1).value)
         loop2_var = int(sheet.cell(13, 1).value)
         svar = int(sheet.cell(9, 1).value)
-        await asyncio.sleep(180)
+        await asyncio.sleep(130)
+        global mydb
+        global my_cursor
+        mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
+        my_cursor = mydb.cursor(buffered=True)
+        print('n')
         new_now = datetime.now(tz)
         timey = new_now.strftime("%H")
         """if timey == '00':
