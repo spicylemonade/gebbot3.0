@@ -51,7 +51,6 @@ async def on_ready():
     global loop_var
     global loop2_var
     while True:
-        await asyncio.sleep(130)
         global svar
         loop_var = int(sheet.cell(12, 1).value)
         loop2_var = int(sheet.cell(13, 1).value)
@@ -104,6 +103,7 @@ async def on_ready():
             my_cursor.execute("UPDATE geb_economy SET edu_var=5")
             mydb.commit()
             await asyncio.sleep(3600)
+        await asyncio.sleep(130)
 
 
 ''''@client.event
