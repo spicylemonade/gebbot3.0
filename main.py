@@ -1155,5 +1155,4 @@ async def m_loop():
 async def shutdown(context):
     exit()
 
-print('hello')
 client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
