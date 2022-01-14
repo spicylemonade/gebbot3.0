@@ -43,8 +43,8 @@ import functools
 import operator
 mip = "'"
 #this is for edditng values and shwing them in mysql
-                  
-     
+
+
 @client.event
 async def on_ready():
     print("bot ready")
@@ -591,13 +591,13 @@ async def dm(ctx, guild_id: int):
 async def bank(ctx,*, usero=None):
     #if(usero != None):
         #guild = client.get_guild(761311676049915985)
-        
+
         #userp = discord.utils.get(guild.members, name=usero[:-5], discriminator=usero[-4:])
         #if '#' not in str(usero):
             #userp = 'unavailable'
     #else:
         #userp = None
-    #try: 
+    #try:
         #if '#' in str(usero):
             #await bank1(ctx,userp)
         #else:
@@ -622,7 +622,7 @@ async def bank3(ctx, user=None):
                 x=functools.reduce(operator.add, (x))
                 embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
                 await ctx.send(embed=embedi)
-       
+
 #@client.command()
 async def bank1(ctx, user):
             if(user == None):
@@ -637,7 +637,7 @@ async def bank1(ctx, user):
                 x=functools.reduce(operator.add, (x))
             embedi = discord.Embed(title=f":moneybag: {member.name} ",description='$'+str(x),color=(0x25be2a))
             await ctx.send(embed=embedi)
-#@client.command()                
+#@client.command()
 async def bank2(ctx,member):
     if member == 'sarah':
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {'548651121590140944'}")
@@ -681,7 +681,7 @@ async def bank2(ctx,member):
         xname = client.get_user(471334973379706900)
         embedi = discord.Embed(title=f":moneybag: {xname.name} ",description='$'+str(bankg),color=(0x25be2a))
         await ctx.send(embed=embedi)
-    
+
 
 @client.command()
 async def work(ctx):
@@ -708,8 +708,8 @@ async def work(ctx):
             embedi = discord.Embed(title=f":necktie: {t}", description="you gained: $"+ str(b), color=(0x25be2a))
             await ctx.send(embed=embedi)
 
-                  
-                 
+
+
 @client.command()
 async def give(ctx,amount,*, user: discord.Member):
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
@@ -755,10 +755,10 @@ async def rank(ctx):
                      inline=True)
     await ctx.send(embed=embedi)
 
-                  
-    
-         
-       
+
+
+
+
 @client.command()
 async def rob(ctx,*, user: discord.Member):
     try:
@@ -785,19 +785,19 @@ async def rob(ctx,*, user: discord.Member):
                                 f = random.randint(1,f)
                                 f= int(f*.5)
                                 #lowers the rate if the robber is offline
-                                
+
                 f = int(f*0.5)
                 await update_rob(str(ctx.author.id),user,f)
                 embedi = discord.Embed(title="Robbed :interrobang:",description=":money_with_wings: "+nft,color=(0x25be2a))
-                    
+
                 await ctx.send(embed=embedi)
     except:
             embedi = discord.Embed(title="Robbed :interrobang:",description="congrants you robbed a broke person",color=(0x25be2a))
-                    
+
             await ctx.send(embed=embedi)
 
-         
-       
+
+
 @client.command()
 async def gamble(ctx, choice, amount):
         my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = {mip + str(ctx.author.id) + mip}")
@@ -958,12 +958,12 @@ async def major(ctx, edun):
                 my_cursor.execute(f"UPDATE geb_economy SET education = 'business' WHERE discord_id = {mip + str(ctx.author.id) + mip}")
                 my_cursor.execute(f"UPDATE geb_economy SET total_edu_var = 0 WHERE discord_id = {mip + str(ctx.author.id) + mip}")
                 await ctx.send(embed=embedi)
-                
+
             else:
                 embedi = discord.Embed(title=major,description=':mortar_board: you already own a degree in this, try a different major', color=(0xFFD700))
                 await ctx.send(embed=embedi)
     mydb.commit()
-        
+
 
 
 @client.command()
@@ -1041,7 +1041,7 @@ async def edu_list(ctx):
         edu_list=functools.reduce(operator.add, (edu_list))
     embedi = discord.Embed(title=':mortar_board: your degrees',description=edu_list, color=(0xFFD700))
     await ctx.send(embed=embedi)
-     
+
 async def update_name(ctxy):
     my_cursor.execute("SELECT * FROM geb_economy;")
     mip = "'"
@@ -1050,7 +1050,7 @@ async def update_name(ctxy):
             my_cursor.execute(f"INSERT INTO geb_economy (discord_id,money,job,work_var,rob_var) VALUES({mip+ctxy+mip},0,'babysiter',0,0)")
             mydb.commit()
     # if the id isnt in the databse then it adds it in
-        
+
 async def update_data(ctxy,exp):
     mip ="'"
     my_cursor.execute(f"UPDATE geb_economy SET money = money+{exp} WHERE discord_id = {mip+ctxy+mip}")
@@ -1139,7 +1139,7 @@ async def edu_list(m):
     elif m == 'bussiness':
         y_edu=-1200
 #all of the  majors(they subtract money)
-                
+
 
 async def m_loop():
          while True:
@@ -1155,6 +1155,7 @@ async def m_loop():
 async def shutdown(context):
     exit()
 
-
+#testing the push
+#new push
 
 client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
