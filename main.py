@@ -1154,5 +1154,5 @@ async def m_loop():
 @commands.is_owner()
 async def shutdown(context):
     exit()
-#bumdo
+
 client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
