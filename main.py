@@ -182,40 +182,9 @@ async def blip(ctx):
             #if bumf == "14:56:00":
                # print('yes')
         print(bumf)'''
-likky = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3NGPoU0F3IeT5HvQapFeEQpeDiQa-2FpQTY7gzbtIpFnMo7V3eYJMvh5oPqFuQH0sYWcR_Rv5CZBy/pubchart?oid=1043142030&format=image'
-embeysir = discord.Embed(title='Shibo-Stats', description='click open original to get up to date')
-
-
-@client.command()
-async def stats(ctx):
-    embeysir.set_image(url=likky)
-    embeysir.set_thumbnail(url=likky)
-    await ctx.send(embed=embeysir)
-
-
-exec(open('sinfo.py').read())
-@client.command()
-@commands.has_permissions(manage_channels=True)
-async def newchan(ctx, *, channel_name):
-    embednewchan = discord.Embed(
-        title=':gear: New Channel',
-        description=f"```{channel_name} channel created by {ctx.author}```")
-    await ctx.guild.create_text_channel(channel_name,
-                                        category=ctx.channel.category)
-    await ctx.send(embed=embednewchan)
-
-#add channel
-@client.command()
-@commands.has_permissions(manage_channels=True)
-async def delchan(ctx, *, channel_name):
-    guild = ctx.guild
-    channel_find = discord.utils.get(guild.channels, name=channel_name)
-    embeddelchan = discord.Embed(
-        title=':gear::x: Deleted Channel',
-        description=f"```{channel_name} channel deleted by {ctx.author}```")
-    await channel_find.delete()
-    await ctx.send(embed=embeddelchan)
-#delete channel
+############################################################
+import sinfo #SERVER INFO
+############################################################
 
 @client.command()
 @commands.has_permissions()
