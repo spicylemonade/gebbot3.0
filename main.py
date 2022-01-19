@@ -186,6 +186,9 @@ async def blip(ctx):
 import sinfo #SERVER INFO
 ############################################################
 
+############################################################
+import serv_manage #SERVER MANAGEMENT
+############################################################
 @client.command()
 @commands.has_permissions()
 async def remind(ctx, time, *, task):
