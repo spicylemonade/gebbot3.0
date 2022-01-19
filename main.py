@@ -193,7 +193,7 @@ async def stats(ctx):
     await ctx.send(embed=embeysir)
 
 
-execfile('sinfo.py')
+exec(open('sinfo.py').read())
 @client.command()
 @commands.has_permissions(manage_channels=True)
 async def newchan(ctx, *, channel_name):
