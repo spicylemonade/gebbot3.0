@@ -182,13 +182,18 @@ async def blip(ctx):
             #if bumf == "14:56:00":
                # print('yes')
         print(bumf)'''
-############################################################
-import sinfo #SERVER INFO
-############################################################
+secondary_files():
+         ############################################################
+         import sinfo #SERVER INFO
+         ############################################################
 
-############################################################
-import serv_manage #SERVER MANAGEMENT
-############################################################
+         ############################################################
+         import serv_manage #SERVER MANAGEMENT
+         ############################################################
+         
+         ############################################################
+         import geb_economy #ECONOMY FUNCTION
+         ############################################################
 @client.command()
 @commands.has_permissions()
 async def remind(ctx, time, *, task):
@@ -471,9 +476,6 @@ async def dm(ctx, guild_id: int):
     channel = guild.channels[0]
     invitelink = await channel.create_invite(max_uses=1)
     await ctx.author.send(invitelink)
-##############################################
-import geb_economy #ECONOMY FUNCTION
-##############################################
 async def m_loop():
          while True:
 
@@ -489,3 +491,5 @@ async def shutdown(context):
     exit()
 
 client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
+if bot == true:
+         secondary_files()
