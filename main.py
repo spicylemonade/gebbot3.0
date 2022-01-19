@@ -182,7 +182,7 @@ async def blip(ctx):
             #if bumf == "14:56:00":
                # print('yes')
         print(bumf)'''
-secondary_files():
+async def secondary_files():
          ############################################################
          import sinfo #SERVER INFO
          ############################################################
