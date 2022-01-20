@@ -42,34 +42,16 @@ mip = "'"
 @client.event
 async def on_ready():
     print("bot ready")
-    global loop_var
-    global loop2_var
     while True:
         global svar
-        loop_var = int(sheet.cell(12, 1).value)
-        loop2_var = int(sheet.cell(13, 1).value)
-        svar = int(sheet.cell(9, 1).value)
         global mydb
         global my_cursor
         mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
         my_cursor = mydb.cursor(buffered=True)
         new_now = datetime.now(tz)
         timey = new_now.strftime("%H")
+        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = '548651121590140944'")
         if timey == "00":
-            datey = datetime.today().strftime('%d %m %Y')
-            day, month, year = (int(i) for i in datey.split(' '))
-            weday = date(int(year), int(month), int(day))
-            datey1 = weday.strftime("%A")
-            if svar >= 7:
-                sheet.update_cell(12, 1, loop_var + 1)
-                # sheet.sheet.update_cell(1, 13, loop2_var+2)
-                sheet.update_cell(9, 1, 0)
-                await asyncio.sleep(3)
-                svar = int(sheet.cell(9, 1).value)
-
-            sheet.update_cell(9, 1, svar + 1)
-            svar = int(sheet.cell(9, 1).value)
-            sheet.update_cell(svar, loop2_var, datey1)
             my_cursor.execute("UPDATE geb_economy SET rob_var=5")
             my_cursor.execute("UPDATE geb_economy SET work_var=5")
             my_cursor.execute("UPDATE geb_economy SET edu_var=5")
@@ -83,16 +65,6 @@ keyword = "bum do"
 
 @client.event
 async def on_message(message):
-    try:
-        loop_var = int(sheet.cell(12, 1).value)
-        svar = int(sheet.cell(9, 1).value)
-        if message.channel.type is discord.ChannelType.private:
-            pass
-
-        elif message.guild.id == 761311676049915985:
-            sheet.update_cell(svar, loop_var, (int(sheet.cell(svar, loop_var).value) + 1))
-    except:
-        pass
     username = message.author.name
     embed = discord.Embed(title=":game_die:",
                           description=str(random.randint(1, 100)),
