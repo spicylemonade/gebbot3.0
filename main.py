@@ -50,10 +50,6 @@ async def on_ready():
         my_cursor = mydb.cursor(buffered=True)
         new_now = datetime.now(tz)
         timey = new_now.strftime("%H")
-        my_cursor.execute(f"SELECT money FROM geb_economy WHERE discord_id = '548651121590140944'")
-        for x in my_cursor:
-                x=functools.reduce(operator.add, (x))
-        print(x)
         if timey == "00":
             my_cursor.execute("UPDATE geb_economy SET rob_var=5")
             my_cursor.execute("UPDATE geb_economy SET work_var=5")
