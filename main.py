@@ -250,7 +250,7 @@ async def shutdown(context):
 ####################################
 exec(open("sinfo.py").read())
 ####################################
-exec(open("serv_manage.py").read())
+exec(open("nuke.py").read())
 ####################################
 exec(open("geb_economy.py").read())
 ####################################
