@@ -223,7 +223,16 @@ async def on_message_delete(message):
     snipe_message_content = None
 
     snipe_message_author = None
-
+ 
+@client.command()
+async def flip(ctx):
+   flipper = ["heads :coin:","tails :coin:"]
+   flips = random.choice(flipper)
+   embedo = discord.Embed(title=f"{ctx.author.name}'s flip",
+                               description=flips)
+   await ctx.send(embed=embedo)
+   
+   
 
 @client.command()
 async def snipe(ctx):
