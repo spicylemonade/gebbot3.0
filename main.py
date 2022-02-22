@@ -237,7 +237,7 @@ async def flip(ctx):
 async def set(ctx, name):
    global compName
    compName = name
-   my_cursor.execute(f"UPDATE data SET comp = {compName}")
+   my_cursor.execute(f"UPDATE data SET comp = {mip+ compName+ mip}")
    mydb.commit()
    my_cursor.execute(f"SELECT comp FROM data")
    x = my_cursor.fetchone()
