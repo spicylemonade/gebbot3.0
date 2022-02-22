@@ -231,8 +231,21 @@ async def flip(ctx):
    embedo = discord.Embed(title=f"{ctx.author.name}'s flip",
                                description=flips)
    await ctx.send(embed=embedo)
-   
-   
+    
+    
+@client.command()
+async def set(ctx, name):
+   global compName
+   compName = name
+   embedo = discord.Embed(title=compName,
+                               description=f"set by {ctx.author.name}")
+   await ctx.send(embed=embedo)
+
+@client.command()
+async def comp(ctx):
+   embedo = discord.Embed(title=compName,
+                               description=f"set by {ctx.author.name}")
+   await ctx.send(embed=embedo)
 
 @client.command()
 async def snipe(ctx):
