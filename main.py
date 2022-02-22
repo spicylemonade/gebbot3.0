@@ -237,14 +237,14 @@ async def flip(ctx):
 async def set(ctx, name):
    global compName
    compName = name
-   embedo = discord.Embed(title=compName,
-                               description=f"set by {ctx.author.name}")
+   embedo = discord.Embed(title=compName+ " :art:",
+                               description=f"set by {ctx.author.name}", color=(0x6791B0))
    await ctx.send(embed=embedo)
 
 @client.command()
 async def comp(ctx):
-   embedo = discord.Embed(title=compName,
-                               description=f"set by {ctx.author.name}")
+   embedo = discord.Embed(title=f"{ctx.author.name}'s Competition :art:",
+                               description="trophy"+ compName+" - winners(none)", color=(0x5426AA))
    await ctx.send(embed=embedo)
 
 @client.command()
