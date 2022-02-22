@@ -253,7 +253,7 @@ async def setw(ctx, name):
    x = my_cursor.fetchone()
    my_cursor.execute(f"SELECT winner FROM data")
    y = my_cursor.fetchone()
-   embedo = discord.Embed(title=f"{ctx.author.name}'s Competition :art:(fin)",
+   embedo = discord.Embed(title=f"Competition :art:(fin)",
                                description=f":trophy:{x} - WINNER({y})", color=(0x7588E7))
    await ctx.send(embed=embedo)
 @client.command()
@@ -262,7 +262,7 @@ async def comp(ctx):
    x = my_cursor.fetchone()
    my_cursor.execute(f"SELECT winner FROM data")
    y = my_cursor.fetchone()
-   embedo = discord.Embed(title=f"{ctx.author.name}'s Competition :art:",
+   embedo = discord.Embed(title=f"Competition :art:",
                                description=f":trophy:{x} - winner({y})", color=(0x7588E7))
    await ctx.send(embed=embedo)
 
