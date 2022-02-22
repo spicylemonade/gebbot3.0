@@ -241,18 +241,21 @@ async def set(ctx, name):
    mydb.commit()
    my_cursor.execute(f"SELECT comp FROM data")
    x = my_cursor.fetchone()
+   x=x[0]
    embedo = discord.Embed(title=x+ " :art:",
                                description=f"set by {ctx.author.name}", color=(0x6791B0))
    await ctx.send(embed=embedo)
     
 @client.command()
 async def setw(ctx, name):
-   my_cursor.execute(f"UPDATE data SET winner = {name}")
+   my_cursor.execute(f"UPDATE data SET winner = {mip + name + mip}")
    mydb.commit()
    my_cursor.execute(f"SELECT comp FROM data")
    x = my_cursor.fetchone()
+   x= x[0]
    my_cursor.execute(f"SELECT winner FROM data")
    y = my_cursor.fetchone()
+   y=y[0]
    embedo = discord.Embed(title=f"Competition :art:(fin)",
                                description=f":trophy:{x} - WINNER({y})", color=(0x7588E7))
    await ctx.send(embed=embedo)
@@ -260,9 +263,11 @@ async def setw(ctx, name):
 async def comp(ctx):
    my_cursor.execute(f"SELECT comp FROM data")
    x = my_cursor.fetchone()
+   x=x[0]
    my_cursor.execute(f"SELECT winner FROM data")
    y = my_cursor.fetchone()
-   embedo = discord.Embed(title=f"Competition :art:",
+   y=y[0]
+   embedo = discord.Embed(title=f"~Competition :art:",
                                description=f":trophy:{x} - winner({y})", color=(0x7588E7))
    await ctx.send(embed=embedo)
 
