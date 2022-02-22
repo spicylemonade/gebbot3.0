@@ -244,7 +244,7 @@ async def set(ctx, name):
 @client.command()
 async def comp(ctx):
    embedo = discord.Embed(title=f"{ctx.author.name}'s Competition :art:",
-                               description="trophy "+ compName+" - winner(none)", color=(0x7588E7))
+                               description=":trophy: "+ compName+" - winner(none)", color=(0x7588E7))
    await ctx.send(embed=embedo)
 
 @client.command()
