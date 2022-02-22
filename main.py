@@ -237,14 +237,33 @@ async def flip(ctx):
 async def set(ctx, name):
    global compName
    compName = name
-   embedo = discord.Embed(title=compName+ " :art:",
+   my_cursor.execute(f"UPDATE data SET comp = {compName}")
+   mydb.commit()
+   my_cursor.execute(f"SELECT comp FROM data")
+   x = my_cursor.fetchone()
+   embedo = discord.Embed(title=x+ " :art:",
                                description=f"set by {ctx.author.name}", color=(0x6791B0))
    await ctx.send(embed=embedo)
-
+    
+@client.command()
+async def setw(ctx, name):
+   my_cursor.execute(f"UPDATE data SET winner = {name}")
+   mydb.commit()
+   my_cursor.execute(f"SELECT comp FROM data")
+   x = my_cursor.fetchone()
+   my_cursor.execute(f"SELECT winner FROM data")
+   y = my_cursor.fetchone()
+   embedo = discord.Embed(title=f"{ctx.author.name}'s Competition :art:(fin)",
+                               description=f":trophy:{x} - WINNER({y})", color=(0x7588E7))
+   await ctx.send(embed=embedo)
 @client.command()
 async def comp(ctx):
+   my_cursor.execute(f"SELECT comp FROM data")
+   x = my_cursor.fetchone()
+   my_cursor.execute(f"SELECT winner FROM data")
+   y = my_cursor.fetchone()
    embedo = discord.Embed(title=f"{ctx.author.name}'s Competition :art:",
-                               description=":trophy: "+ compName+" - winner(none)", color=(0x7588E7))
+                               description=f":trophy:{x} - winner({y})", color=(0x7588E7))
    await ctx.send(embed=embedo)
 
 @client.command()
