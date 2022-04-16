@@ -302,4 +302,4 @@ exec(open("geb_economy.py").read())
 ####################################
 exec(open("nfw.py").read())
 ####################################
-client.run('OTA1MjMxMzIwODc0MDk0Njk1.YYHEXQ.iZS2HTl4gsl5Rpkgnej4lfjSvxE', bot=True)
+client.run('ze token', bot=True)
