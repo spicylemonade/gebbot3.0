@@ -46,7 +46,7 @@ async def on_ready():
         global svar
         global mydb
         global my_cursor
-        mydb = mysql.connector.connect(host="bdrpelbcfmnvbfxgeoe6-mysql.services.clever-cloud.com", user="uhiollzjpdbggq7z",passwd="ETZYMs1wQWWGA1Vnq590",database="bdrpelbcfmnvbfxgeoe6",port=3306)
+        mydb = mysql.connector.connect(host="name", user="uhiollzjpdbggq7z",passwd="password",database="database",port=3306)
         my_cursor = mydb.cursor(buffered=True)
         new_now = datetime.now(tz)
         timey = new_now.strftime("%H")
