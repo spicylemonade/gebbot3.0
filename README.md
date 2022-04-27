@@ -9,3 +9,5 @@ functiions-
   ratios
   8ball
   mysql economy function(for the most part finished)
+    includes jobs, stealing, gambling, careers(partly unfinished)
+    
