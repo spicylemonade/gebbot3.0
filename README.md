@@ -1,5 +1,6 @@
 # gebbot3.0
 
+## Discontinued
 My first Discord Bot-abandond
 
 language-python
